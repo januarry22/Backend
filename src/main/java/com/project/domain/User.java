@@ -9,13 +9,13 @@ public class User implements UserDetails{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Integer user_id;
+
 	
 	private String userID;
-	
+	private String user_passwd;
 
 	private String user_name;
-	private String user_passwd;
+
 	private String user_birth;
 	private String user_addr;
 	private String user_regdate;
@@ -29,7 +29,7 @@ public class User implements UserDetails{
 	
 	@Override
 	public String toString() {
-		return "User [user_id=" + user_id + ", userID=" + userID + ", user_name=" + user_name + ", user_passwd="
+		return "User [user_name=" + user_name + ", user_passwd="
 				+ user_passwd + ", user_birth=" + user_birth + ", user_addr=" + user_addr + ", user_regdate="
 				+ user_regdate + ", authorities=" + authorities + ", isAccountNonExpired=" + isAccountNonExpired
 				+ ", isAccountNonLocked=" + isAccountNonLocked + ", isCredentialsNonExpired=" + isCredentialsNonExpired
@@ -55,13 +55,7 @@ public class User implements UserDetails{
 	}
 	
 	
-	public Integer getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
-	}
-	
+
 	
 	public String getUser_name() {
 		return user_name;
