@@ -31,7 +31,7 @@
 	<!-- // mapper 패키지  -->
 	
 	
-	<logger name="com.lcomputerstudy.example" level="DEBUG" additivity="false">
+	<logger name="com.project.example" level="DEBUG" additivity="false">
 		<appender-ref ref="FILE" />
 		<appender-ref ref="STDOUT" />
 	</logger>
