@@ -1,0 +1,329 @@
+15:13:04.199 INFO  --- [restartedMain] c.p.example.BackendApplication : Starting BackendApplication on DESKTOP-E8TJM0T with PID 6056 (C:\Temp\Backend\bin\main started by l8-afternoon in C:\Temp\Backend) 
+15:13:04.203 DEBUG --- [restartedMain] c.p.example.BackendApplication : Running with Spring Boot v2.3.4.RELEASE, Spring v5.2.9.RELEASE 
+15:13:04.203 INFO  --- [restartedMain] c.p.example.BackendApplication : The following profiles are active: local 
+15:13:05.146 DEBUG --- [restartedMain] c.p.example.config.AuthTokenFilter : Filter 'authenticationJwtTokenFilter' configured for use 
+15:13:05.515 INFO  --- [restartedMain] c.p.example.BackendApplication : Started BackendApplication in 1.602 seconds (JVM running for 2.158) 
+15:13:13.939 DEBUG --- [http-nio-9000-exec-2] c.p.e.mapper.UserMapper.createUser : ==>  Preparing: INSERT INTO User ( user_id, user_name, user_passwd, u_isAccountNonExpired, u_isAccountNonLocked, u_isCredentialNonExpired, u_isEnabled ) VALUES ( ?, ?, ?, ?, ?, ?, ? ) 
+15:13:13.954 DEBUG --- [http-nio-9000-exec-2] c.p.e.mapper.UserMapper.createUser : ==> Parameters: 44(String), kiki(String), $2a$10$hyrz48rVGZXHuY.LmecJw.uT71mVopggQ5b9oOxXkDXD.jyDQzHQ6(String), true(Boolean), true(Boolean), true(Boolean), true(Boolean) 
+15:13:13.963 DEBUG --- [http-nio-9000-exec-2] c.p.e.mapper.UserMapper.createUser : <==    Updates: 1 
+15:13:13.974 DEBUG --- [http-nio-9000-exec-2] c.p.e.m.UserMapper.createAuthority : ==>  Preparing: INSERT INTO user_auth ( u_id, u_auth ) VALUES (?, ?) ON DUPLICATE KEY UPDATE u_id = ? 
+15:13:13.975 DEBUG --- [http-nio-9000-exec-2] c.p.e.m.UserMapper.createAuthority : ==> Parameters: 44(String), ROLE_USER(String), 44(String) 
+15:13:13.976 DEBUG --- [http-nio-9000-exec-2] c.p.e.m.UserMapper.createAuthority : <==    Updates: 1 
+15:13:23.293 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.createUser : ==>  Preparing: INSERT INTO User ( user_id, user_name, user_passwd, u_isAccountNonExpired, u_isAccountNonLocked, u_isCredentialNonExpired, u_isEnabled ) VALUES ( ?, ?, ?, ?, ?, ?, ? ) 
+15:13:23.293 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.createUser : ==> Parameters: kiki(String), kiki(String), $2a$10$CqqTwUIkzhi0ctrzSzqpteTWLLPS9whlaTu3Rr3w68RcZoGP7KiW2(String), true(Boolean), true(Boolean), true(Boolean), true(Boolean) 
+15:13:23.303 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.createUser : <==    Updates: 1 
+15:13:23.305 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.createAuthority : ==>  Preparing: INSERT INTO user_auth ( u_id, u_auth ) VALUES (?, ?) ON DUPLICATE KEY UPDATE u_id = ? 
+15:13:23.306 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.createAuthority : ==> Parameters: kiki(String), ROLE_USER(String), kiki(String) 
+15:13:23.309 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.createAuthority : <==    Updates: 1 
+15:13:30.219 INFO  --- [http-nio-9000-exec-5] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+15:13:30.294 DEBUG --- [http-nio-9000-exec-5] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+15:13:30.294 DEBUG --- [http-nio-9000-exec-5] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+15:13:30.315 DEBUG --- [http-nio-9000-exec-5] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+15:13:30.317 DEBUG --- [http-nio-9000-exec-5] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+15:13:30.317 DEBUG --- [http-nio-9000-exec-5] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+15:13:30.319 DEBUG --- [http-nio-9000-exec-5] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+15:13:45.027 INFO  --- [http-nio-9000-exec-6] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+15:13:45.028 DEBUG --- [http-nio-9000-exec-6] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+15:13:45.028 DEBUG --- [http-nio-9000-exec-6] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+15:13:45.029 DEBUG --- [http-nio-9000-exec-6] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+15:13:45.030 DEBUG --- [http-nio-9000-exec-6] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+15:13:45.030 DEBUG --- [http-nio-9000-exec-6] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+15:13:45.031 DEBUG --- [http-nio-9000-exec-6] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+15:14:38.204 INFO  --- [http-nio-9000-exec-7] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+15:14:38.205 DEBUG --- [http-nio-9000-exec-7] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+15:14:38.205 DEBUG --- [http-nio-9000-exec-7] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+15:14:38.206 DEBUG --- [http-nio-9000-exec-7] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+15:14:38.207 DEBUG --- [http-nio-9000-exec-7] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+15:14:38.207 DEBUG --- [http-nio-9000-exec-7] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+15:14:38.208 DEBUG --- [http-nio-9000-exec-7] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+15:15:55.298 INFO  --- [http-nio-9000-exec-9] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+15:15:55.299 DEBUG --- [http-nio-9000-exec-9] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+15:15:55.299 DEBUG --- [http-nio-9000-exec-9] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+15:15:55.300 DEBUG --- [http-nio-9000-exec-9] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+15:15:55.300 DEBUG --- [http-nio-9000-exec-9] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+15:15:55.300 DEBUG --- [http-nio-9000-exec-9] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+15:15:55.301 DEBUG --- [http-nio-9000-exec-9] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+15:15:57.328 INFO  --- [http-nio-9000-exec-10] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+15:15:57.328 DEBUG --- [http-nio-9000-exec-10] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+15:15:57.328 DEBUG --- [http-nio-9000-exec-10] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+15:15:57.329 DEBUG --- [http-nio-9000-exec-10] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+15:15:57.330 DEBUG --- [http-nio-9000-exec-10] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+15:15:57.330 DEBUG --- [http-nio-9000-exec-10] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+15:15:57.331 DEBUG --- [http-nio-9000-exec-10] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+15:16:58.389 INFO  --- [http-nio-9000-exec-2] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+15:16:58.390 DEBUG --- [http-nio-9000-exec-2] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+15:16:58.390 DEBUG --- [http-nio-9000-exec-2] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+15:16:58.391 DEBUG --- [http-nio-9000-exec-2] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+15:16:58.392 DEBUG --- [http-nio-9000-exec-2] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+15:16:58.393 DEBUG --- [http-nio-9000-exec-2] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+15:16:58.394 DEBUG --- [http-nio-9000-exec-2] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+15:17:11.971 INFO  --- [http-nio-9000-exec-3] c.p.e.controller.AuthController : testLoginRequest [username=11, password=11] 
+15:17:11.971 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+15:17:11.972 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : ==> Parameters: 11(String) 
+15:17:11.972 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : <==      Total: 0 
+15:17:11.972 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+15:17:11.973 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: 11(String) 
+15:17:11.973 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : <==      Total: 0 
+15:17:11.977 ERROR --- [http-nio-9000-exec-3] c.p.e.config.AuthEntryPointJwt : Unauthorized error: null 
+15:17:24.731 INFO  --- [http-nio-9000-exec-4] c.p.e.controller.AuthController : testLoginRequest [username=11, password=11] 
+15:17:24.732 DEBUG --- [http-nio-9000-exec-4] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+15:17:24.732 DEBUG --- [http-nio-9000-exec-4] c.p.e.mapper.UserMapper.readUser : ==> Parameters: 11(String) 
+15:17:24.733 DEBUG --- [http-nio-9000-exec-4] c.p.e.mapper.UserMapper.readUser : <==      Total: 0 
+15:17:24.733 DEBUG --- [http-nio-9000-exec-4] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+15:17:24.733 DEBUG --- [http-nio-9000-exec-4] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: 11(String) 
+15:17:24.734 DEBUG --- [http-nio-9000-exec-4] c.p.e.m.UserMapper.readAuthorities : <==      Total: 0 
+15:17:24.735 ERROR --- [http-nio-9000-exec-4] c.p.e.config.AuthEntryPointJwt : Unauthorized error: null 
+15:17:36.476 INFO  --- [http-nio-9000-exec-5] c.p.e.controller.AuthController : testLoginRequest [username=11, password=11] 
+15:17:36.477 DEBUG --- [http-nio-9000-exec-5] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+15:17:36.477 DEBUG --- [http-nio-9000-exec-5] c.p.e.mapper.UserMapper.readUser : ==> Parameters: 11(String) 
+15:17:36.477 DEBUG --- [http-nio-9000-exec-5] c.p.e.mapper.UserMapper.readUser : <==      Total: 0 
+15:17:36.478 DEBUG --- [http-nio-9000-exec-5] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+15:17:36.478 DEBUG --- [http-nio-9000-exec-5] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: 11(String) 
+15:17:36.478 DEBUG --- [http-nio-9000-exec-5] c.p.e.m.UserMapper.readAuthorities : <==      Total: 0 
+15:17:36.479 ERROR --- [http-nio-9000-exec-5] c.p.e.config.AuthEntryPointJwt : Unauthorized error: null 
+15:24:27.401 INFO  --- [http-nio-9000-exec-7] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+15:24:27.402 DEBUG --- [http-nio-9000-exec-7] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+15:24:27.402 DEBUG --- [http-nio-9000-exec-7] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+15:24:27.403 DEBUG --- [http-nio-9000-exec-7] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+15:24:27.403 DEBUG --- [http-nio-9000-exec-7] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+15:24:27.403 DEBUG --- [http-nio-9000-exec-7] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+15:24:27.404 DEBUG --- [http-nio-9000-exec-7] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+15:25:50.093 INFO  --- [http-nio-9000-exec-9] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+15:25:50.093 DEBUG --- [http-nio-9000-exec-9] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+15:25:50.093 DEBUG --- [http-nio-9000-exec-9] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+15:25:50.094 DEBUG --- [http-nio-9000-exec-9] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+15:25:50.095 DEBUG --- [http-nio-9000-exec-9] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+15:25:50.095 DEBUG --- [http-nio-9000-exec-9] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+15:25:50.095 DEBUG --- [http-nio-9000-exec-9] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+15:39:01.518 INFO  --- [http-nio-9000-exec-1] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+15:39:01.518 DEBUG --- [http-nio-9000-exec-1] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+15:39:01.519 DEBUG --- [http-nio-9000-exec-1] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+15:39:01.519 DEBUG --- [http-nio-9000-exec-1] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+15:39:01.520 DEBUG --- [http-nio-9000-exec-1] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+15:39:01.520 DEBUG --- [http-nio-9000-exec-1] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+15:39:01.520 DEBUG --- [http-nio-9000-exec-1] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+15:49:56.867 INFO  --- [http-nio-9000-exec-3] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+15:49:56.868 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+15:49:56.868 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+15:49:56.869 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+15:49:56.869 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+15:49:56.869 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+15:49:56.870 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+16:12:29.452 INFO  --- [http-nio-9000-exec-5] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+16:12:29.453 DEBUG --- [http-nio-9000-exec-5] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+16:12:29.453 DEBUG --- [http-nio-9000-exec-5] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+16:12:29.454 DEBUG --- [http-nio-9000-exec-5] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+16:12:29.455 DEBUG --- [http-nio-9000-exec-5] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+16:12:29.455 DEBUG --- [http-nio-9000-exec-5] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+16:12:29.455 DEBUG --- [http-nio-9000-exec-5] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+16:16:21.857 INFO  --- [http-nio-9000-exec-8] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+16:16:21.858 DEBUG --- [http-nio-9000-exec-8] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+16:16:21.858 DEBUG --- [http-nio-9000-exec-8] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+16:16:21.859 DEBUG --- [http-nio-9000-exec-8] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+16:16:21.859 DEBUG --- [http-nio-9000-exec-8] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+16:16:21.859 DEBUG --- [http-nio-9000-exec-8] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+16:16:21.860 DEBUG --- [http-nio-9000-exec-8] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+17:17:35.923 INFO  --- [http-nio-9000-exec-1] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+17:17:35.925 DEBUG --- [http-nio-9000-exec-1] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+17:17:35.925 DEBUG --- [http-nio-9000-exec-1] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+17:17:35.926 DEBUG --- [http-nio-9000-exec-1] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+17:17:35.927 DEBUG --- [http-nio-9000-exec-1] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+17:17:35.927 DEBUG --- [http-nio-9000-exec-1] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+17:17:35.927 DEBUG --- [http-nio-9000-exec-1] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+17:21:26.348 WARN  --- [http-nio-9000-exec-3] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+17:21:33.532 INFO  --- [http-nio-9000-exec-4] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+17:21:33.533 DEBUG --- [http-nio-9000-exec-4] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+17:21:33.533 DEBUG --- [http-nio-9000-exec-4] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+17:21:33.534 DEBUG --- [http-nio-9000-exec-4] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+17:21:33.534 DEBUG --- [http-nio-9000-exec-4] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+17:21:33.534 DEBUG --- [http-nio-9000-exec-4] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+17:21:33.534 DEBUG --- [http-nio-9000-exec-4] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+17:22:02.565 WARN  --- [http-nio-9000-exec-5] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+17:22:04.681 WARN  --- [http-nio-9000-exec-6] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+17:33:17.464 WARN  --- [http-nio-9000-exec-7] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+17:33:42.562 WARN  --- [http-nio-9000-exec-8] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+17:34:35.888 WARN  --- [http-nio-9000-exec-9] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+17:34:41.239 WARN  --- [http-nio-9000-exec-10] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+17:34:52.405 WARN  --- [http-nio-9000-exec-1] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+17:35:10.066 WARN  --- [http-nio-9000-exec-2] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+17:40:47.489 INFO  --- [http-nio-9000-exec-3] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+17:40:47.490 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+17:40:47.490 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+17:40:47.491 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+17:40:47.491 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+17:40:47.491 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+17:40:47.491 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+17:40:51.319 WARN  --- [http-nio-9000-exec-4] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+17:46:14.592 WARN  --- [http-nio-9000-exec-5] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+17:49:27.311 INFO  --- [http-nio-9000-exec-6] c.p.e.controller.AuthController : testLoginRequest [username= kiki, password=kiki] 
+17:49:27.311 DEBUG --- [http-nio-9000-exec-6] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+17:49:27.312 DEBUG --- [http-nio-9000-exec-6] c.p.e.mapper.UserMapper.readUser : ==> Parameters:  kiki(String) 
+17:49:27.312 DEBUG --- [http-nio-9000-exec-6] c.p.e.mapper.UserMapper.readUser : <==      Total: 0 
+17:49:27.313 DEBUG --- [http-nio-9000-exec-6] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+17:49:27.313 DEBUG --- [http-nio-9000-exec-6] c.p.e.m.UserMapper.readAuthorities : ==> Parameters:  kiki(String) 
+17:49:27.313 DEBUG --- [http-nio-9000-exec-6] c.p.e.m.UserMapper.readAuthorities : <==      Total: 0 
+17:49:27.314 ERROR --- [http-nio-9000-exec-6] c.p.e.config.AuthEntryPointJwt : Unauthorized error: null 
+17:49:28.204 INFO  --- [http-nio-9000-exec-7] c.p.e.controller.AuthController : testLoginRequest [username= kiki, password=kiki] 
+17:49:28.205 DEBUG --- [http-nio-9000-exec-7] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+17:49:28.205 DEBUG --- [http-nio-9000-exec-7] c.p.e.mapper.UserMapper.readUser : ==> Parameters:  kiki(String) 
+17:49:28.206 DEBUG --- [http-nio-9000-exec-7] c.p.e.mapper.UserMapper.readUser : <==      Total: 0 
+17:49:28.206 DEBUG --- [http-nio-9000-exec-7] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+17:49:28.206 DEBUG --- [http-nio-9000-exec-7] c.p.e.m.UserMapper.readAuthorities : ==> Parameters:  kiki(String) 
+17:49:28.207 DEBUG --- [http-nio-9000-exec-7] c.p.e.m.UserMapper.readAuthorities : <==      Total: 0 
+17:49:28.207 ERROR --- [http-nio-9000-exec-7] c.p.e.config.AuthEntryPointJwt : Unauthorized error: null 
+17:49:28.651 INFO  --- [http-nio-9000-exec-8] c.p.e.controller.AuthController : testLoginRequest [username= kiki, password=kiki] 
+17:49:28.651 DEBUG --- [http-nio-9000-exec-8] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+17:49:28.652 DEBUG --- [http-nio-9000-exec-8] c.p.e.mapper.UserMapper.readUser : ==> Parameters:  kiki(String) 
+17:49:28.652 DEBUG --- [http-nio-9000-exec-8] c.p.e.mapper.UserMapper.readUser : <==      Total: 0 
+17:49:28.652 DEBUG --- [http-nio-9000-exec-8] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+17:49:28.653 DEBUG --- [http-nio-9000-exec-8] c.p.e.m.UserMapper.readAuthorities : ==> Parameters:  kiki(String) 
+17:49:28.653 DEBUG --- [http-nio-9000-exec-8] c.p.e.m.UserMapper.readAuthorities : <==      Total: 0 
+17:49:28.653 ERROR --- [http-nio-9000-exec-8] c.p.e.config.AuthEntryPointJwt : Unauthorized error: null 
+17:49:28.947 INFO  --- [http-nio-9000-exec-9] c.p.e.controller.AuthController : testLoginRequest [username= kiki, password=kiki] 
+17:49:28.947 DEBUG --- [http-nio-9000-exec-9] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+17:49:28.947 DEBUG --- [http-nio-9000-exec-9] c.p.e.mapper.UserMapper.readUser : ==> Parameters:  kiki(String) 
+17:49:28.947 DEBUG --- [http-nio-9000-exec-9] c.p.e.mapper.UserMapper.readUser : <==      Total: 0 
+17:49:28.948 DEBUG --- [http-nio-9000-exec-9] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+17:49:28.948 DEBUG --- [http-nio-9000-exec-9] c.p.e.m.UserMapper.readAuthorities : ==> Parameters:  kiki(String) 
+17:49:28.948 DEBUG --- [http-nio-9000-exec-9] c.p.e.m.UserMapper.readAuthorities : <==      Total: 0 
+17:49:28.948 ERROR --- [http-nio-9000-exec-9] c.p.e.config.AuthEntryPointJwt : Unauthorized error: null 
+17:49:48.237 WARN  --- [http-nio-9000-exec-10] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+17:49:57.168 INFO  --- [http-nio-9000-exec-1] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+17:49:57.169 DEBUG --- [http-nio-9000-exec-1] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+17:49:57.169 DEBUG --- [http-nio-9000-exec-1] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+17:49:57.171 DEBUG --- [http-nio-9000-exec-1] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+17:49:57.172 DEBUG --- [http-nio-9000-exec-1] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+17:49:57.172 DEBUG --- [http-nio-9000-exec-1] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+17:49:57.173 DEBUG --- [http-nio-9000-exec-1] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+17:50:03.637 WARN  --- [http-nio-9000-exec-2] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+17:53:21.070 WARN  --- [http-nio-9000-exec-3] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+18:04:42.551 WARN  --- [http-nio-9000-exec-4] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+18:06:52.558 WARN  --- [http-nio-9000-exec-5] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+18:07:23.376 WARN  --- [http-nio-9000-exec-6] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+18:07:44.132 WARN  --- [http-nio-9000-exec-7] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+18:08:31.451 WARN  --- [http-nio-9000-exec-8] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+18:12:27.942 WARN  --- [http-nio-9000-exec-9] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+18:13:01.964 WARN  --- [http-nio-9000-exec-10] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+18:13:33.684 WARN  --- [http-nio-9000-exec-1] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+18:14:14.570 WARN  --- [http-nio-9000-exec-2] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+18:15:16.349 WARN  --- [http-nio-9000-exec-3] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+18:15:55.225 WARN  --- [http-nio-9000-exec-4] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+18:30:41.710 INFO  --- [http-nio-9000-exec-6] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+18:30:41.711 DEBUG --- [http-nio-9000-exec-6] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+18:30:41.711 DEBUG --- [http-nio-9000-exec-6] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+18:30:41.712 DEBUG --- [http-nio-9000-exec-6] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+18:30:41.712 DEBUG --- [http-nio-9000-exec-6] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+18:30:41.712 DEBUG --- [http-nio-9000-exec-6] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+18:30:41.713 DEBUG --- [http-nio-9000-exec-6] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+19:02:20.359 WARN  --- [http-nio-9000-exec-8] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported] 
+19:02:55.995 WARN  --- [http-nio-9000-exec-9] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported] 
+19:02:59.428 WARN  --- [http-nio-9000-exec-10] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported] 
+19:06:03.345 WARN  --- [http-nio-9000-exec-2] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported] 
+19:06:21.598 WARN  --- [http-nio-9000-exec-3] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported] 
+19:15:02.472 WARN  --- [http-nio-9000-exec-5] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+19:15:10.072 WARN  --- [http-nio-9000-exec-6] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+19:15:12.471 WARN  --- [http-nio-9000-exec-7] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+19:15:17.389 INFO  --- [http-nio-9000-exec-8] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+19:15:17.390 DEBUG --- [http-nio-9000-exec-8] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+19:15:17.391 DEBUG --- [http-nio-9000-exec-8] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+19:15:17.391 DEBUG --- [http-nio-9000-exec-8] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+19:15:17.391 DEBUG --- [http-nio-9000-exec-8] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+19:15:17.392 DEBUG --- [http-nio-9000-exec-8] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+19:15:17.392 DEBUG --- [http-nio-9000-exec-8] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+19:15:19.669 WARN  --- [http-nio-9000-exec-9] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+19:15:32.622 INFO  --- [http-nio-9000-exec-10] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+19:15:32.622 DEBUG --- [http-nio-9000-exec-10] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+19:15:32.622 DEBUG --- [http-nio-9000-exec-10] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+19:15:32.623 DEBUG --- [http-nio-9000-exec-10] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+19:15:32.623 DEBUG --- [http-nio-9000-exec-10] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+19:15:32.623 DEBUG --- [http-nio-9000-exec-10] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+19:15:32.623 DEBUG --- [http-nio-9000-exec-10] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+19:16:02.052 ERROR --- [http-nio-9000-exec-2] com.project.example.config.JwtUtils : Invalid JWT token: Unable to read JSON value: E�)�{ 
+19:16:02.053 INFO  --- [http-nio-9000-exec-2] c.p.e.controller.AuthController : testLoginRequest [username=11, password=11] 
+19:16:02.053 DEBUG --- [http-nio-9000-exec-2] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+19:16:02.053 DEBUG --- [http-nio-9000-exec-2] c.p.e.mapper.UserMapper.readUser : ==> Parameters: 11(String) 
+19:16:02.054 DEBUG --- [http-nio-9000-exec-2] c.p.e.mapper.UserMapper.readUser : <==      Total: 0 
+19:16:02.054 DEBUG --- [http-nio-9000-exec-2] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+19:16:02.054 DEBUG --- [http-nio-9000-exec-2] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: 11(String) 
+19:16:02.055 DEBUG --- [http-nio-9000-exec-2] c.p.e.m.UserMapper.readAuthorities : <==      Total: 0 
+19:16:02.055 ERROR --- [http-nio-9000-exec-2] c.p.e.config.AuthEntryPointJwt : Unauthorized error: null 
+19:16:03.066 ERROR --- [http-nio-9000-exec-3] com.project.example.config.JwtUtils : Invalid JWT token: Unable to read JSON value: E�)�{ 
+19:16:03.067 INFO  --- [http-nio-9000-exec-3] c.p.e.controller.AuthController : testLoginRequest [username=11, password=11] 
+19:16:03.067 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+19:16:03.067 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : ==> Parameters: 11(String) 
+19:16:03.068 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : <==      Total: 0 
+19:16:03.068 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+19:16:03.068 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: 11(String) 
+19:16:03.069 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : <==      Total: 0 
+19:16:03.069 ERROR --- [http-nio-9000-exec-3] c.p.e.config.AuthEntryPointJwt : Unauthorized error: null 
+19:16:05.721 ERROR --- [http-nio-9000-exec-4] com.project.example.config.JwtUtils : Invalid JWT token: Unable to read JSON value: E�)�{ 
+19:16:05.722 INFO  --- [http-nio-9000-exec-4] c.p.e.controller.AuthController : testLoginRequest [username=22, password=22] 
+19:16:05.722 DEBUG --- [http-nio-9000-exec-4] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+19:16:05.722 DEBUG --- [http-nio-9000-exec-4] c.p.e.mapper.UserMapper.readUser : ==> Parameters: 22(String) 
+19:16:05.723 DEBUG --- [http-nio-9000-exec-4] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+19:16:05.723 DEBUG --- [http-nio-9000-exec-4] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+19:16:05.723 DEBUG --- [http-nio-9000-exec-4] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: 22(String) 
+19:16:05.723 DEBUG --- [http-nio-9000-exec-4] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+19:16:21.597 ERROR --- [http-nio-9000-exec-5] com.project.example.config.JwtUtils : Invalid JWT token: Unable to read JSON value: E�)�{ 
+19:16:21.598 INFO  --- [http-nio-9000-exec-5] c.p.e.controller.AuthController : testLoginRequest [username=22, password=22] 
+19:16:21.598 DEBUG --- [http-nio-9000-exec-5] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+19:16:21.598 DEBUG --- [http-nio-9000-exec-5] c.p.e.mapper.UserMapper.readUser : ==> Parameters: 22(String) 
+19:16:21.599 DEBUG --- [http-nio-9000-exec-5] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+19:16:21.599 DEBUG --- [http-nio-9000-exec-5] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+19:16:21.599 DEBUG --- [http-nio-9000-exec-5] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: 22(String) 
+19:16:21.600 DEBUG --- [http-nio-9000-exec-5] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+19:32:44.649 WARN  --- [http-nio-9000-exec-7] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+19:32:52.427 INFO  --- [http-nio-9000-exec-8] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+19:32:52.427 DEBUG --- [http-nio-9000-exec-8] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+19:32:52.427 DEBUG --- [http-nio-9000-exec-8] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+19:32:52.428 DEBUG --- [http-nio-9000-exec-8] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+19:32:52.428 DEBUG --- [http-nio-9000-exec-8] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+19:32:52.428 DEBUG --- [http-nio-9000-exec-8] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+19:32:52.429 DEBUG --- [http-nio-9000-exec-8] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+19:34:32.423 WARN  --- [http-nio-9000-exec-10] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+19:39:10.333 WARN  --- [http-nio-9000-exec-2] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+19:39:24.111 WARN  --- [http-nio-9000-exec-3] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+19:39:31.331 WARN  --- [http-nio-9000-exec-4] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+19:40:10.055 WARN  --- [http-nio-9000-exec-5] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+19:40:27.833 WARN  --- [http-nio-9000-exec-6] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+19:40:43.144 WARN  --- [http-nio-9000-exec-7] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+19:40:46.026 WARN  --- [http-nio-9000-exec-8] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+19:47:44.677 WARN  --- [http-nio-9000-exec-10] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported] 
+20:02:24.661 WARN  --- [http-nio-9000-exec-2] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+20:02:28.810 WARN  --- [http-nio-9000-exec-3] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+20:02:32.487 INFO  --- [http-nio-9000-exec-4] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+20:02:32.488 DEBUG --- [http-nio-9000-exec-4] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+20:02:32.488 DEBUG --- [http-nio-9000-exec-4] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+20:02:32.489 DEBUG --- [http-nio-9000-exec-4] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+20:02:32.490 DEBUG --- [http-nio-9000-exec-4] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+20:02:32.490 DEBUG --- [http-nio-9000-exec-4] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+20:02:32.490 DEBUG --- [http-nio-9000-exec-4] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+20:02:35.929 WARN  --- [http-nio-9000-exec-5] o.s.w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.project.example.controller.AuthController.authenticateUser(com.project.example.request.LoginRequest)] 
+20:10:01.103 INFO  --- [http-nio-9000-exec-6] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+20:10:01.103 DEBUG --- [http-nio-9000-exec-6] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+20:10:01.103 DEBUG --- [http-nio-9000-exec-6] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+20:10:01.104 DEBUG --- [http-nio-9000-exec-6] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+20:10:01.104 DEBUG --- [http-nio-9000-exec-6] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+20:10:01.104 DEBUG --- [http-nio-9000-exec-6] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+20:10:01.104 DEBUG --- [http-nio-9000-exec-6] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+20:42:50.006 INFO  --- [http-nio-9000-exec-9] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+20:42:50.008 DEBUG --- [http-nio-9000-exec-9] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+20:42:50.008 DEBUG --- [http-nio-9000-exec-9] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+20:42:50.008 DEBUG --- [http-nio-9000-exec-9] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+20:42:50.009 DEBUG --- [http-nio-9000-exec-9] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+20:42:50.009 DEBUG --- [http-nio-9000-exec-9] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+20:42:50.009 DEBUG --- [http-nio-9000-exec-9] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+21:16:59.683 INFO  --- [http-nio-9000-exec-1] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+21:16:59.685 DEBUG --- [http-nio-9000-exec-1] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+21:16:59.685 DEBUG --- [http-nio-9000-exec-1] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+21:16:59.685 DEBUG --- [http-nio-9000-exec-1] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+21:16:59.686 DEBUG --- [http-nio-9000-exec-1] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+21:16:59.686 DEBUG --- [http-nio-9000-exec-1] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+21:16:59.686 DEBUG --- [http-nio-9000-exec-1] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
+21:18:57.396 INFO  --- [http-nio-9000-exec-3] c.p.e.controller.AuthController : testLoginRequest [username=kiki, password=kiki] 
+21:18:57.396 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : ==>  Preparing: SELECT user_id as username, user_passwd as password, user_name, u_isAccountNonExpired as isAccountNonExpired, u_isAccountNonLocked as isAccountNonLocked, u_isCredentialNonExpired as isCredentialsNonExpired, u_isEnabled as isEnabled FROM User WHERE 1=1 AND user_id = ? 
+21:18:57.397 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : ==> Parameters: kiki(String) 
+21:18:57.397 DEBUG --- [http-nio-9000-exec-3] c.p.e.mapper.UserMapper.readUser : <==      Total: 1 
+21:18:57.398 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : ==>  Preparing: SELECT u_auth FROM user_auth WHERE 1=1 AND u_id = ? 
+21:18:57.398 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : ==> Parameters: kiki(String) 
+21:18:57.398 DEBUG --- [http-nio-9000-exec-3] c.p.e.m.UserMapper.readAuthorities : <==      Total: 1 
