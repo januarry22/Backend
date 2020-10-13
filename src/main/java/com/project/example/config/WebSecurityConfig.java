@@ -56,7 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 		//해당 경로 모두 허용
-		.authorizeRequests().antMatchers("/api/auth/**").permitAll()
+		.authorizeRequests()
+		.antMatchers("/api/auth/**").permitAll()
 		.antMatchers("/api/test/**").permitAll()
 		//이외의 경로 인증처리 된 유저만 접근 가능
 		.anyRequest().authenticated();

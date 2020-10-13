@@ -2,6 +2,8 @@ package com.project.example.config;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -43,6 +45,11 @@ public class JwtUtils {
 	public String getUerNameFromJwtToken(String token) {
 		return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
 		
+	}
+	
+	// Request의 Header에서 token파싱 : "X-AUTH-TOKEN: jwt토큰"
+	public String resolveToken(HttpServletRequest req) {
+		return req.getHeader("X-AUTH-TOKEN");
 	}
 	
 	//jwt유효성 검사 메소드
