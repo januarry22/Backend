@@ -34,16 +34,16 @@
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.calories" label="지출내역"></v-text-field>
+                    <v-text-field v-model="editedItem.expand_content" label="지출내역"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.fat" label="지출날짜"></v-text-field>
+                    <v-text-field v-model="editedItem.expand_date" label="지출날짜"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.carbs" label="지출가격"></v-text-field>
+                    <v-text-field v-model="editedItem.expand_price" label="지출가격"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.protein" label="지출유형"></v-text-field>
+                    <v-text-field v-model="editedItem.expand_val" label="지출유형"></v-text-field>
                   </v-col>
                 </v-row>
               </v-container>
@@ -81,6 +81,9 @@
 
 
 <script>
+import {mapActions} from 'vuex'
+
+
   export default {
     data: () => ({
       dialog: false,
@@ -130,8 +133,8 @@
     },
 
     methods: {
+      ...mapActions(['ExpandInsert']),
       initialize () {
-       
       },
 
       editItem (item) {
@@ -157,7 +160,7 @@
         if (this.editedIndex > -1) {
           Object.assign(this.expand[this.editedIndex], this.editedItem)
         } else {
-          this.desserts.push(this.editedItem)
+          this.expand.push(this.editedItem)
         }
         this.close()
       },

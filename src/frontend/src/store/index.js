@@ -2,7 +2,7 @@ import Axios from '../axios.js'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import router from '../router/index'
-import axios from '../axios.js'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -33,6 +33,9 @@ export default new Vuex.Store({
       state.login_success=true
     },
     GET_ExpandList(state, data){
+      state.Expand_list=data
+    },
+    SET_ExpandList(state, data){
       state.Expand_list=data
     }
 
@@ -105,7 +108,7 @@ export default new Vuex.Store({
 
   ExpandList({commit}){
     return new Promise((resolve, reject)=>{
-      axios.get('http://localhost:9000/api/expand/list')
+      Axios.get('http://localhost:9000/api/expand/list')
         .then(Response=>{
           console.log(Response.data)
           commit('GET_ExpandList', Response.data)
@@ -116,7 +119,27 @@ export default new Vuex.Store({
         })
     
       })
-    },
+  },
+
+  ExpandInsert({commit}, payload){
+    return new Promise((resolve, reject)=>{
+      Axios.post('http://localhost:9000/api/expand/insert', payload)
+        .then(Response=>{
+          console.log(Response.data)
+          if(Response.data==="success"){
+            commit('SET_ExpandList', Response.data)
+          }
+        })
+        .catch(Error=>{
+          console.log('error')
+          reject(Error)
+        })
+    })
+
+  },
+  
+
+
 
 
 

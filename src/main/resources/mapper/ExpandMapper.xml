@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.example.mapper.ExpandMapper">
+
+			<select id="selectExpandList" resultType="Expand">
+				SELECT * 
+				FROM	Expand			
+			
+			</select>
+
+			<insert id="insertExpand" parameterType="Expand">
+				INSERT INTO	expand
+				(
+				expand_content,
+				expand_date,
+				expand_price,
+				expand_val
+				)
+				VALUES
+				(
+				#{expand_content},
+				sysdate(),
+				#{expand_price},
+				#{expand_val}
+				)
+			
+			</insert>
+
+
+
+</mapper>
