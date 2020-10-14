@@ -14,4 +14,6 @@ public interface ExpandMapper {
 	
 	// 지출 입력
 	public void insertExpand(Expand expand);
+
+	public void deleteExpand(int expand_id);
 }

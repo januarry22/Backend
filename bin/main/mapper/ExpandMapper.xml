@@ -25,6 +25,13 @@
 				)
 			
 			</insert>
+			
+			<delete id="deleteExpand" parameterType="Integer">
+			DELETE
+			FROM Expand
+			WHERE expand_id = #{expand_id}
+				
+			</delete>
 
 
 

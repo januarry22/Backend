@@ -24,6 +24,13 @@ public class ExpandServiceImpl implements ExpandService{
 		// TODO Auto-generated method stub
 		expandMapper.insertExpand(expand);
 	}
+
+	@Override
+	public void deleteExpand(int expand_id) {
+		// TODO Auto-generated method stub
+		expandMapper.deleteExpand(expand_id);
+		
+	}
 	
 	
 	

@@ -9,5 +9,7 @@ public interface ExpandService {
 	public List<Expand> selectExpandList();
 	
 	public void insertExpand(Expand expand);
+
+	public void deleteExpand(int expand_id);
 	
 }

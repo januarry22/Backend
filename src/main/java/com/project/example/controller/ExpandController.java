@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,10 +30,10 @@ public class ExpandController {
 	@Autowired
 	private ExpandService expandService;
 	
-	@GetMapping("/all")
-	public String allAccess() {
-		return "Public Content.";
-	}
+//	@GetMapping("/all")
+//	public String allAccess() {
+//		return "Public Content.";
+//	}
 	
 	@GetMapping("/list")
 	//@PreAuthorize("hasRole('USER')")
@@ -47,6 +49,14 @@ public class ExpandController {
 		expandService.insertExpand(expand);
 		
 		return new ResponseEntity<>("success", HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/delete/{expand_id}")
+	public ResponseEntity<?> expandDelete(@PathVariable(value="expand_id") int expand_id){
+		logger.info("delete"+expand_id);
+		
+		expandService.deleteExpand(expand_id);
+		return ResponseEntity.ok(expand_id);
 	}
 	
 	
