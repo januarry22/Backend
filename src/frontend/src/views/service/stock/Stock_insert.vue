@@ -1,8 +1,8 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
-    sort-by="calories"
+    :items="Stock_list"
+    sort-by="expand_id"
     class="elevation-1"
   >
     <template v-slot:top>
@@ -33,19 +33,19 @@
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
+                    <v-text-field v-model="editedItem.stock_id" label="재고 ID"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
+                    <v-text-field v-model="editedItem.stock_name" label="재고명"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
+                    <v-text-field v-model="editedItem.stock_regi_date" label="재고등록날짜"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
+                    <v-text-field v-model="editedItem.stock_expire_date" label="재고유통기한"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
+                    <v-text-field v-model="editedItem.stock_quantity" label="재고량"></v-text-field>
                   </v-col>
                 </v-row>
               </v-container>
@@ -60,68 +60,64 @@
         </v-dialog>
       </v-toolbar>
     </template>
-    <template v-slot:item.actions="{ item }">
-      <v-icon
-        small
-        class="mr-2"
-        @click="editItem(item)"
-      >
-        mdi-pencil
-      </v-icon>
-      <v-icon
-        small
-        @click="deleteItem(item)"
-      >
-        mdi-delete
-      </v-icon>
-    </template>
-    <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize">Reset</v-btn>
-    </template>
-
-    
+      <template v-slot:item.action="{ item }">
+            <v-icon
+              small
+              class="mr-2"
+              @click="editItem(item)"
+            >
+              edit
+            </v-icon>
+            <v-icon
+              small
+              @click="deleteItem(item)"
+            >
+              delete
+            </v-icon>
+          </template>
   </v-data-table>
 </template>
 
 
 <script>
+import {mapActions, mapState} from 'vuex'
+import axios from 'axios';
+
   export default {
     data: () => ({
       dialog: false,
       headers: [
         {
-          text: 'Dessert (100g serving)',
+          text: '재고 id',
           align: 'start',
           sortable: false,
-          value: 'name',
+          value: 'stock_id',
         },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Actions', value: 'actions', sortable: false },
+        { text: '재고명', value: 'stock_name' },
+        { text: '재고등록일', value: 'stock_regi_date' },
+        { text: '재고유통기한', value: 'stock_expire_date' },
+        { text: '재고량', value: 'stock_quantity' },
+        { text: 'Actions', value: 'action', sortable: false },
       ],
-      desserts: [],
+      Stock_list: [],
       editedIndex: -1,
       editedItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        expand_content: '',
+        expand_date: '',
+        expand_price: '',
+        expand_val: '',
       },
       defaultItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        expand_content: '',
+        expand_date: Date,
+        expand_price: '',
+        expand_val: '',
       },
     }),
 
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        return this.editedIndex === -1 ? '재고 등록' : '수정'
       },
     },
 
@@ -130,96 +126,43 @@
         val || this.close()
       },
     },
-
-    created () {
-      this.initialize()
+    mounted() {
+      this.fetchStock()
     },
 
     methods: {
       initialize () {
-        this.desserts = [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-          },
-        ]
+      },
+      fetchStock () {
+        axios
+          .get('http://localhost:9000/api/stock/list')
+          .then(Response=>
+            this.Stock_list=Response.data
+          )
       },
 
       editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
+        this.editedIndex = this.Stock_list.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
 
       deleteItem (item) {
-        const index = this.desserts.indexOf(item)
-        confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
+        const index = this.Stock_list.indexOf(item)
+        this.deleteItem = Object.assign({}, item)
+
+        this.stock_id=this.deleteItem.stock_id
+ 
+
+        if(confirm('삭제하시겠습니까?')){
+          axios
+          .delete('http://localhost:9000/api/stock/delete/'+this.stock_id)
+          .then(Response=>{
+            this.fetchStock()
+          })
+          this.Stock_list.splice(index, 1)
+
+        }
       },
 
       close () {
@@ -231,10 +174,38 @@
       },
 
       save () {
+        this.stock_id=this.editedItem.stock_id
+       // console.log(this.expand_id)
         if (this.editedIndex > -1) {
-          Object.assign(this.desserts[this.editedIndex], this.editedItem)
+          Object.assign(this.Stock_list[this.editedIndex], this.editedItem)
+          axios
+            .delete('http://localhost:9000/api/stock/delete/'+this.stock_id)
+            .then(Response=>{
+             this.fetchStock()
+             })
+          axios
+            .post('http://localhost:9000/api/stock/insert',{
+                stock_name: this.editedItem.stock_name,
+                stock_regi_date: this.editedItem.stock_regi_date,
+                stock_expire_date: this.editedItem.stock_expire_date,
+                stock_quantity: this.editedItem.stock_quantity
+          })
+          .then(Response=>{
+            this.fetchStock()
+          })
         } else {
-          this.desserts.push(this.editedItem)
+          this.Stock_list.push(this.editedItem)
+
+          axios
+          .post('http://localhost:9000/api/stock/insert',{
+                stock_name: this.editedItem.stock_name,
+                stock_regi_date: this.editedItem.stock_regi_date,
+                stock_expire_date: this.editedItem.stock_expire_date,
+                stock_quantity: this.editedItem.stock_quantity
+          })
+          .then(Response=>{
+            this.fetchStock()
+          })
         }
         this.close()
       },

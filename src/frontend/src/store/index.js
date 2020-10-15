@@ -43,7 +43,7 @@ export default new Vuex.Store({
   getters : {
      isLoggedIn: state => state.SET_USER,
     // authStatus: state => state.status,
-    allUsers: state=>{
+     allUsers: state=>{
       return state.UserList.length
     }
   },

@@ -130,7 +130,6 @@ import axios from 'axios';
             .then(Response=>
             this.Expand_list=Response.data
          )
-
       },
     }
   }

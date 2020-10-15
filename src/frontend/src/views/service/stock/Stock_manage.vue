@@ -2,11 +2,11 @@
   <div>
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="Stock_list"
     >
-      <template v-slot:item.name="props">
+      <template v-slot:item.expand_name="props">
         <v-edit-dialog
-          :return-value.sync="props.item.name"
+          :return-value.sync="props.item.expand_name"
           @save="save"
           @cancel="cancel"
           @open="open"
@@ -14,7 +14,7 @@
         > {{ props.item.name }}
           <template v-slot:input>
             <v-text-field
-              v-model="props.item.name"
+              v-model="props.item.expand_name"
               :rules="[max25chars]"
               label="Edit"
               single-line
@@ -24,13 +24,13 @@
         </v-edit-dialog>
       </template>
 
-      <template v-slot:item.calories="props">
-           <v-chip :color="getColor(props.item.calories)" dark>{{ props.item.calories }}</v-chip>
+      <template v-slot:item.stock_expire_date="props">
+           <v-chip :color="getColor(props.item.stock_expire_date)" dark>{{ props.item.stock_expire_date }}</v-chip>
       </template>
       
-      <template v-slot:item.iron="props">
+      <template v-slot:item.iron="stock_quantity">
         <v-edit-dialog
-          :return-value.sync="props.item.iron"
+          :return-value.sync="props.item.stock_quantity"
           large
           persistent
           @save="save"
@@ -38,13 +38,13 @@
           @open="open"
           @close="close"
         >
-          <div>{{ props.item.iron }}</div>
+          <div>{{ props.item.stock_quantity }}</div>
           <template v-slot:input>
-            <div class="mt-4 title">Update Iron</div>
+            <div class="mt-4 title">Update stock_quantity</div>
           </template>
           <template v-slot:input>
             <v-text-field
-              v-model="props.item.iron"
+              v-model="props.item.stock_quantity"
               :rules="[max25chars]"
               label="Edit"
               single-line
@@ -53,6 +53,14 @@
             ></v-text-field>
           </template>
         </v-edit-dialog>
+      </template>
+
+       <template v-slot:item.action="{ item }">
+            <v-icon
+              small
+              @click="deleteItem(item)"
+            >delete
+            </v-icon>
       </template>
     </v-data-table>
 
@@ -67,7 +75,10 @@
 </template>
 
 <script>
-  export default {
+import {mapActions, mapState} from 'vuex'
+import axios from 'axios';
+
+ export default {
     data () {
       return {
         snack: false,
@@ -77,102 +88,34 @@
         pagination: {},
         headers: [
           {
-            text: 'Dessert (100g serving)',
+            text: '재고 id',
             align: 'start',
             sortable: false,
-            value: 'name',
+            value: 'stock_id',
           },
-          { text: 'Calories', value: 'calories' },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
+          { text: '재고명', value: 'stock_name' },
+          { text: '재고등록일', value: 'stock_regi_date' },
+          { text: '재고유통기한', value: 'stock_expire_date' },
+          { text: '재고량', value: 'stock_quantity' },
+          { text: 'Actions', value: 'action', sortable: false },
         ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: '7%',
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: '8%',
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: '16%',
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: '0%',
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: '2%',
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: '45%',
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: '22%',
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: '6%',
-          },
-        ],
+        Stock_list: [],
       }
     },
+     mounted(){
+      this.fetchStock()
+
+    },
+
     methods: {
+       fetchStock () {
+        axios
+          .get('http://localhost:9000/api/stock/list')
+          .then(Response=>
+            this.Stock_list=Response.data
+          )
+      },
+
       save () {
         this.snack = true
         this.snackColor = 'success'
@@ -191,10 +134,28 @@
       close () {
         console.log('Dialog closed')
       },
-       getColor (calories) {
-        if (calories > 400) return 'red'
-        else if (calories > 200) return 'orange'
+       getColor (stock_expire_date) {
+        if (stock_expire_date > 400) return 'red'
+        else if (stock_expire_date > 200) return 'orange'
         else return 'green'
+      },
+
+            deleteItem (item) {
+        const index = this.Stock_list.indexOf(item)
+        this.deleteItem = Object.assign({}, item)
+
+        this.stock_id=this.deleteItem.stock_id
+ 
+
+        if(confirm('삭제하시겠습니까?')){
+          axios
+          .delete('http://localhost:9000/api/stock/delete/'+this.stock_id)
+          .then(Response=>{
+            this.fetchStock()
+          })
+          this.Stock_list.splice(index, 1)
+
+        }
       },
       
     },

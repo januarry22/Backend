@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,47 +16,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.example.domain.Expand;
-import com.project.example.service.ExpandService;
+import com.project.example.domain.Stock;
+import com.project.example.service.StockService;
 
 @CrossOrigin(origins = "*", maxAge=3600)
 @RestController
-@RequestMapping("api/expand")
-public class ExpandController {
+@RequestMapping("api/stock")
+public class StockController {
+	
 
 	private final Logger logger=LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	private ExpandService expandService;
-	
-//	@GetMapping("/all")
-//	public String allAccess() {
-//		return "Public Content.";
-//	}
+	private StockService stockService;
 	
 	@GetMapping("/list")
-	//@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<?> expandList(){
-		List<Expand> expandList= expandService.selectExpandList();
-		return ResponseEntity.ok(expandList);
+	public ResponseEntity<?> stockList(){
+		List<Stock> stList=stockService.selectStockList();
+		return ResponseEntity.ok(stList);
 	}
 	
 	@PostMapping("/insert")
-	//@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<?> insertExpand(@RequestBody Expand expand){
-				
-		expandService.insertExpand(expand);
-		
+	public ResponseEntity<?> insertStock(@RequestBody Stock stock){
+		stockService.insertStock(stock);
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/delete/{expand_id}")
-	public ResponseEntity<?> expandDelete(@PathVariable(value="expand_id") int expand_id){
-		logger.info("delete"+expand_id);
-		
-		expandService.deleteExpand(expand_id);
-		return ResponseEntity.ok(expand_id);
+	@DeleteMapping("/delete/{stock_id}")
+	public ResponseEntity<?> stockDelete(@PathVariable(value="stock_id") int stock_id){
+		stockService.deleteStock(stock_id);
+		return ResponseEntity.ok(stock_id);
 	}
-	
-	
+
 }

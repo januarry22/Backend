@@ -66,16 +66,14 @@
               small
               class="mr-2"
               @click="editItem(item)"
-            >
-              edit
+            >edit
             </v-icon>
             <v-icon
               small
               @click="deleteItem(item)"
-            >
-              delete
+            >delete
             </v-icon>
-          </template>
+      </template>
 
   </v-data-table>
 
@@ -156,7 +154,6 @@ import axios from 'axios';
           .then(Response=>
             this.Expand_list=Response.data
           )
-
       },
 
       editItem (item) {

@@ -49,7 +49,7 @@ import Expand_report from './Expand_report'
     
     data () {
       return {
-        items: [],
+        items: ['카드','현금'],
         search: '',
         headers: [
           {
@@ -62,7 +62,6 @@ import Expand_report from './Expand_report'
           { text: '지출 날짜', value: 'expand_date' },
           { text: '지출 가격', value: 'expand_price' },
           { text: '결제 유형', value: 'expand_val' },
-          { text: 'Actions', value: 'action', sortable: false },
         ],
         Expand_list: [],
       }
