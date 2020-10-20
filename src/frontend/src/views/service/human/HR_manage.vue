@@ -1,26 +1,34 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="desserts"
-    sort-by="calories"
-    class="elevation-1"
-  >
-    <template v-slot:top>
-      <v-toolbar flat color="white">
-        <v-toolbar-title>사원 관리</v-toolbar-title>
-        <v-divider
-          class="mx-4"
-          inset
-          vertical
-        ></v-divider>
+  <v-container fluid grid-list-md>
+    <v-data-iterator
+      :items="Employee_list"
+      :rows-per-page-items="rowsPerPageItems"
+      :pagination.sync="pagination"
+      content-tag="v-layout"
+      row
+      wrap
+    >
+      <template v-slot:header>
+        <v-toolbar
+          class="mb-2"
+          color="indigo darken-5"
+          dark
+          flat
+        >
+        <v-toolbar-title>사원 정보</v-toolbar-title>
+          <v-divider
+            class="mx-4"
+            inset
+            vertical
+          ></v-divider>
         <v-spacer></v-spacer>
+
         <v-dialog v-model="dialog" max-width="500px">
-          <template v-slot:activator="{ on, attrs }">
+          <template v-slot:activator="{ on}">
             <v-btn
               color="primary"
               dark
               class="mb-2"
-              v-bind="attrs"
               v-on="on"
             >사원 등록</v-btn>
           </template>
@@ -33,19 +41,34 @@
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
+                    <v-text-field v-model="editedItem.employee_id" label="사원 ID"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
+                    <v-text-field v-model="editedItem.employee_name" label="사원이름"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
+                    <v-text-field v-model="editedItem.employee_birth" label="생년월일"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
+                    <v-text-field v-model="editedItem.employee_phone" label="연락처"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
+                    <v-text-field v-model="editedItem.employee_rank" label="직급"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItem.employee_rank_pay" label="직급 급여"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItem.employee_account_num" label="계좌번호"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItem.employee_account_bank" label="은행명"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItem.employee_regi_date" label="입사날짜"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItem.employee_quit_date" label="퇴사날짜"></v-text-field>
                   </v-col>
                 </v-row>
               </v-container>
@@ -58,68 +81,90 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-      </v-toolbar>
-    </template>
-    <template v-slot:item.actions="{ item }">
-      <v-icon
-        small
-        class="mr-2"
-        @click="editItem(item)"
-      >
-        mdi-pencil
-      </v-icon>
-      <v-icon
-        small
-        @click="deleteItem(item)"
-      >
-        mdi-delete
-      </v-icon>
-    </template>
-    <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize">Reset</v-btn>
-    </template>
-  </v-data-table>
+        </v-toolbar>
+      </template>
+
+      <template v-slot:item="props">
+        <v-flex
+          xs12
+          sm6
+          md4
+          lg3
+        >
+          <v-card>
+            <v-card-title class="subheading font-weight-bold">{{ props.item.employee_id }}</v-card-title>
+            <v-divider></v-divider>
+            <v-list dense>
+              <v-list-tile>
+                <v-list-tile-content>사원이름:</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_name }}</v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile>
+                <v-list-tile-content>생년월일:</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_birth }}</v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile>
+                <v-list-tile-content>연락처:</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_phone }}</v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile>
+                <v-list-tile-content>직급:</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_rank }}</v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile>
+                <v-list-tile-content>직급급여:</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_rank_pay }}</v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile>
+                <v-list-tile-content>계좌번호:</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_account_num }}</v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile>
+                <v-list-tile-content>은행명:</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_account_bank }}</v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile>
+                <v-list-tile-content>입사날짜:</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_regi_date }}</v-list-tile-content>
+              </v-list-tile>
+               <v-list-tile>
+                <v-list-tile-content>퇴사날짜:</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_quit_date }}</v-list-tile-content>
+              </v-list-tile>
+            </v-list>
+            <button @click="deleteItem(props.item.employee_id)">삭제</button>
+          </v-card>
+        </v-flex>
+      </template>
+
+
+      
+    </v-data-iterator>
+
+  </v-container>
 </template>
 
-
 <script>
+import {mapActions, mapState} from 'vuex'
+import axios from 'axios';
   export default {
     data: () => ({
       dialog: false,
-      headers: [
-        {
-          text: 'Dessert (100g serving)',
-          align: 'start',
-          sortable: false,
-          value: 'name',
-        },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Actions', value: 'actions', sortable: false },
-      ],
-      desserts: [],
+      rowsPerPageItems: [4, 8, 12],
+      pagination: {
+        rowsPerPage: 4
+      },
+      Employee_list: [],
       editedIndex: -1,
       editedItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
-      },
-      defaultItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
       },
     }),
-
+    mounted() {
+      this.fetchEmployee()
+    },
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        return this.editedIndex === -1 ? '사원 등록' : '수정'
       },
     },
 
@@ -128,98 +173,38 @@
         val || this.close()
       },
     },
-
-    created () {
-      this.initialize()
-    },
-
-    methods: {
-      initialize () {
-        this.desserts = [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-          },
-        ]
+    methods:{
+      fetchEmployee(){
+        axios
+          .get('http://localhost:9000/api/employee/list')
+          .then(Response=>{
+            this.Employee_list=Response.data
+          })
       },
 
       editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
+        this.editedIndex = this.Employee_list.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
+        this.employee_id=this.editedItem.employee_id
       },
 
-      deleteItem (item) {
-        const index = this.desserts.indexOf(item)
-        confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
-      },
+      deleteItem (employee_id) {
+        const index = this.Employee_list.indexOf(item)
+        this.deleteItem = Object.assign({}, item)
 
+        this.employee_id=this.deleteItem.employee_id
+
+        if(confirm('삭제하시겠습니까?')){
+          axios
+          .delete('http://localhost:9000/api/employee/delete/'+this.employee_id)
+          .then(Response=>{
+            this.fetchEmployee()
+          })
+          this.Employee_list.splice(index, 1)
+
+        }
+      },
       close () {
         this.dialog = false
         this.$nextTick(() => {
@@ -227,15 +212,53 @@
           this.editedIndex = -1
         })
       },
-
       save () {
+        this.employee_id=this.editedItem.employee_id
+       
         if (this.editedIndex > -1) {
-          Object.assign(this.desserts[this.editedIndex], this.editedItem)
+          Object.assign(this.Employee_list[this.editedIndex], this.editedItem)
+          axios
+            .delete('http://localhost:9000/api/expand/delete/'+this.employee_id)
+            .then(Response=>{
+             this.fetchEmployee()
+             })
+          axios
+            .post('http://localhost:9000/api/employee/insert',{
+                employee_name: this.editedItem.employee_name,
+                employee_birth: this.editedItem.employee_birth,
+                employee_phone: this.editedItem.employee_phone,
+                employee_rank: this.editedItem.employee_rank,
+                employee_rank_pay: this.editedItem.employee_rank_pay,
+                employee_account_num: this.editedItem.employee_account_num,
+                employee_account_bank: this.editedItem.employee_account_bank,
+                employee_regi_date: this.editedItem.employee_regi_date,
+                employee_quit_date: this.editedItem.employee_quit_date
+          })
+          .then(Response=>{
+            this.fetchItems()
+          })
         } else {
-          this.desserts.push(this.editedItem)
+          this.Employee_list.push(this.editedItem)
+          axios
+          .post('http://localhost:9000/api/employee/insert',{
+               employee_name: this.editedItem.employee_name,
+                employee_birth: this.editedItem.employee_birth,
+                employee_phone: this.editedItem.employee_phone,
+                employee_rank: this.editedItem.employee_rank,
+                employee_rank_pay: this.editedItem.employee_rank_pay,
+                employee_account_num: this.editedItem.employee_account_num,
+                employee_account_bank: this.editedItem.employee_account_bank,
+                employee_regi_date: this.editedItem.employee_regi_date,
+                employee_quit_date: this.editedItem.employee_quit_date
+          })
+          .then(Response=>{
+            this.fetchEmployee()
+          })
         }
         this.close()
       },
     },
+
+
   }
 </script>

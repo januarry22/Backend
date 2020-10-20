@@ -74,7 +74,7 @@
             >
               delete
             </v-icon>
-          </template>
+      </template>
   </v-data-table>
 </template>
 

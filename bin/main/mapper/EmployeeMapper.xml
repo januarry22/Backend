@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.example.mapper.EmployeeMapper">
+
+			<select id="selectEmployeeList" resultType="Employee">
+				SELECT * 
+				FROM	Employee		
+			
+			</select>
+
+			<insert id="insertEmployee" parameterType="Employee">
+				INSERT INTO	Employee
+				(
+				employee_id,
+				employee_name,
+				employee_birth,
+				employee_phone,
+				employee_rank,
+				employee_rank_pay,
+				employee_account_num,
+				employee_account_bank,
+				employee_regi_date,
+				employee_quit_date
+				)
+				VALUES
+				(
+				#{employee_id},
+				#{employee_name},
+				#{employee_birth},
+				#{employee_phone},
+				#{employee_rank},
+				#{employee_rank_pay},
+				#{employee_account_num},
+				#{employee_account_bank},
+				sysdate(),
+				#{employee_quit_date}
+				)
+			
+			</insert>
+			
+			<delete id="deleteEmployee" parameterType="Integer">
+			DELETE
+			FROM Employee
+			WHERE employee_id = #{employee_id}
+				
+			</delete>
+
+
+
+</mapper>
