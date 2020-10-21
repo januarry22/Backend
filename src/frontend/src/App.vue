@@ -46,7 +46,7 @@
             <v-btn router :to="{name:'Login' }">
               <v-icon>mdi-account-circle</v-icon>로그인
             </v-btn>
-            <v-btn v-if="login_success" @click="$store.dispatch('Logout')">
+            <v-btn @click="logout()">
                <v-icon>mdi-logout </v-icon>로그아웃
             </v-btn>
 
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import {mapState, mapMutations, mapGetters} from 'vuex'
+import {mapState, mapMutations} from 'vuex'
   export default {
     props: {
       source: String,
@@ -78,13 +78,20 @@ import {mapState, mapMutations, mapGetters} from 'vuex'
       drawer: null,
     }),
     computed:{
-    
+      ...mapState(["Userinfo"])
     },
     created(){
-      if(this.Userinfo.user_token==null){
-      this.$store.commit("INSERT_TOKEN")
-      console.log("token"+this.Userinfo.user_token)
+      if(this.Userinfo.user_token==null&&localStorage.getItem("token")!==null){
+          this.$store.commit("INSERT_TOKEN")
+          this.$store.dispatch('UnpackToken')
+          console.log("token"+localStorage.getItem("token"))
+      }else if(this.Userinfo.user_token==null&& localStorage.getItem("token") === null){
+        console.log("이용할수 없습니다")
       }
+    },
+
+    methods:{
+      ...mapMutations(["logout"])
     }
   }
 

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.security.core.GrantedAuthority;
 
 import com.project.example.domain.User;
+import com.project.example.domain.UserInfo;
 
 @Mapper
 public interface UserMapper {
@@ -20,6 +21,13 @@ public interface UserMapper {
 
 	// 권한 생성
 	public void createAuthority(User user);
+	
+	
+	// 유저 새로고침
+	public UserInfo readUser_refresh(String username);
+	
+	// 유저 권한 읽기 새로고침
+	public List<GrantedAuthority> readAuthorities_refresh(String username);
 	
 	
 }

@@ -47,7 +47,7 @@ public class AuthTokenFilter extends OncePerRequestFilter{
 			
 			//jwt 토큰이 null이 아니고 유효한 토큰일 때
 			if(jwt != null && jwtUtils.validateJwtToken(jwt)) {
-				String username = jwtUtils.getUerNameFromJwtToken(jwt);
+				String username = jwtUtils.getUserNameFromJwtToken(jwt);
 				
 				//security를 통한 인증 로직
 				UserDetails userDetails = userService.loadUserByUsername(username);

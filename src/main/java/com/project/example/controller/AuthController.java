@@ -3,6 +3,8 @@ package com.project.example.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mysql.cj.util.StringUtils;
 import com.project.example.config.JwtUtils;
 import com.project.example.domain.User;
+import com.project.example.domain.UserInfo;
 import com.project.example.request.JoinRequest;
 import com.project.example.request.LoginRequest;
 import com.project.example.response.JwtResponse;
@@ -90,5 +94,26 @@ public class AuthController {
 		
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}
+	
+	@GetMapping("/unpackToken")
+	public ResponseEntity<?> unpackToken(HttpServletRequest request){
+		String token = new String();
+		
+		token = request.getHeader("Authorization");
+		
+		if(org.springframework.util.StringUtils.hasText(token)&&token.startsWith("Bearer ")) {
+			token=token.substring(1, token.length());
+		}
+		
+		String username=jwtUtils.getUserNameFromJwtToken(token);
+		UserInfo user=userService.readUser_refresh(username);
+		
+		user.setAuthorities(userService.readAuthorities_refresh(username));
+
+		return new ResponseEntity<>(user, HttpStatus.OK);
+		
+	}
+	
+	
 
 }

@@ -42,7 +42,7 @@ public class JwtUtils {
 	
 	
 	//토큰을 이요하여 유저 아이디 불러오는 메소드
-	public String getUerNameFromJwtToken(String token) {
+	public String getUserNameFromJwtToken(String token) {
 		return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
 		
 	}

@@ -37,6 +37,20 @@ export default new Vuex.Store({
     },
     SET_ExpandList(state, data){
       state.Expand_list=data
+    },
+    SET_USER_REFRESH(state, data){
+      state.Userinfo.username=data.username
+      state.Userinfo.user_name=data.user_name
+      state.Userinfo.authorities=data.authorities
+      state.Userinfo.user_token=data.token
+    },
+    logout(state){
+      state.Userinfo.username=null
+      state.Userinfo.user_name=null
+      state.Userinfo.authorities=null
+      state.Userinfo.user_token=null
+      localStorage.removeItem("token")
+      console.log(state.Userinfo)
     }
 
   },
@@ -70,23 +84,26 @@ export default new Vuex.Store({
       })
     },
 
-    getUser({commit}){
-            let token=localstorage.getItem('token') || '';
-            fetch('http://localhost:9000/api/auth/signin',{
-              headers:{
-                'Authorization': token,
-              }
-            })
+    UnpackToken({commit}){
+      return new Promise((resolve,reject)=>{
+        Axios.defaults.headers.common['Authorization']=`Bearer ${localStorage.getItem("token")}`
+        Axios.get('http://localhost:9000/api/auth/unpackToken')
+             .then(Response=>{
+               console.log(Response.data)
+               commit('SET_USER_REFRESH',Response.data)
+             })
+             .catch(Error=>{
+               console.log(Error)
+               console.log('unpackToken_error')
+             })
+      })
+
     },
 
-    Logout(){
-      localStorage.removeItem("token")
-      router.push('/')
-    },
-
-
-
-
+    // Logout(){
+    //   localStorage.removeItem("token")
+    //   router.push('/')
+    // },
     SignUp({commit}, payload){
       console.log(payload)
       return new Promise((resolve, reject)=>{

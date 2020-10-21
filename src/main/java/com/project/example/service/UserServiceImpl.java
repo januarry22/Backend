@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.project.example.domain.User;
+import com.project.example.domain.UserInfo;
 import com.project.example.mapper.UserMapper;
 
 @Service
@@ -52,6 +53,18 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		userMapper.createAuthority(user);
 		
+	}
+
+	@Override
+	public UserInfo readUser_refresh(String username) {
+		// TODO Auto-generated method stub
+		return userMapper.readUser_refresh(username);
+	}
+
+	@Override
+	public List<GrantedAuthority> readAuthorities_refresh(String username) {
+		// TODO Auto-generated method stub
+		return userMapper.readAuthorities_refresh(username);
 	}
 
 	
