@@ -19,7 +19,7 @@
 				VALUES
 				(
 				#{expand_content},
-				sysdate(),
+				now(),
 				#{expand_price},
 				#{expand_val}
 				)

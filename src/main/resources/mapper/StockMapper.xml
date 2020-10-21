@@ -20,7 +20,7 @@
 				VALUES
 				(
 				#{stock_name},
-				sysdate(),
+				now(),
 				#{stock_expire_date},
 				#{stock_quantity}
 				)

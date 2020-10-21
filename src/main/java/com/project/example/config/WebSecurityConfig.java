@@ -62,6 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/api/expand/**").permitAll()
 		.antMatchers("/api/stock/**").permitAll()
 		.antMatchers("/api/employee/**").permitAll()
+		.antMatchers("/api/seller/**").permitAll()
 		//이외의 경로 인증처리 된 유저만 접근 가능
 		.anyRequest().authenticated();
 		

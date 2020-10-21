@@ -4,26 +4,24 @@
 
     <v-col sm="6">
         <v-card>
- <v-form
-                    ref="form"
-                    v-model="valid"
-                    :lazy-validation="lazy"
-                    >
-                    <v-text-field
+            <v-card-title>
+                <h3>시급 계산</h3>
+            </v-card-title>
+                  <!-- <v-text-field
                         v-model="name"
                         :counter="10"
                         :rules="nameRules"
                         label="Name"
                         required
-                    ></v-text-field>
-
-                    <v-text-field
-                        v-model="email"
-                        :rules="emailRules"
-                        label="E-mail"
+                  ></v-text-field> -->
+                    <v-select
+                        v-model="select"
+                        :items="employee_name"
+                        :rules="[v => !!v || 'Item is required']"
+                        label="이름"
                         required
-                    ></v-text-field>
-                    <v-menu
+                    ></v-select>
+                  <v-menu
                         ref="menu"
                         v-model="menu"
                         :close-on-content-click="false"
@@ -33,36 +31,37 @@
                         max-width="290px"
                         min-width="290px"
                     >
-                        <template v-slot:activator="{ on, attrs }">
-                        <v-text-field
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
                             v-model="date"
-                            label="Picker in menu"
+                            label="날짜"
                             readonly
                             v-bind="attrs"
                             v-on="on"
-                        ></v-text-field>
-                        </template>
-                        <v-date-picker
+                            suffix="Date"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
                         v-model="date"
                         type="month"
                         no-title
                         scrollable
-                        >
-                        <v-spacer></v-spacer>
+                    >
+                    <v-spacer></v-spacer>
                         <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
                         <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
-                        </v-date-picker>
-                    </v-menu>
+                    </v-date-picker>
+                  </v-menu>
 
                     <v-text-field
-                        label="Label Text"
+                        label="출근 시간"
                         value="12:30:00"
                         type="time"
                         suffix="PST"
                     ></v-text-field>
 
                     <v-text-field
-                        label="Label Text"
+                        label="퇴근 시간"
                         value="12:30:00"
                         type="time"
                         suffix="PST"
@@ -72,26 +71,21 @@
                         v-model="select"
                         :items="items"
                         :rules="[v => !!v || 'Item is required']"
-                        label="Item"
+                        label="시급"
                         required
                     ></v-select>
-
+          <v-card-actions>
                     <v-btn
                         color="primary"
                         class="mr-4"
-                        @click="sync"
-                    >
-                        입력
-                    </v-btn>
+                        @click="save"
+                    >입력 </v-btn>
 
                     <v-btn
                         color="green"
-                        @click="resetValidation"
-                    >
-                        계산
-                    </v-btn>
-                    </v-form>
-
+                        @click="calc"
+                    >계산</v-btn>
+          </v-card-actions>
         </v-card>
     </v-col>
 

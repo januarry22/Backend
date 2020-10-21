@@ -32,7 +32,7 @@
 				#{employee_rank_pay},
 				#{employee_account_num},
 				#{employee_account_bank},
-				sysdate(),
+				now(),
 				#{employee_quit_date}
 				)
 			

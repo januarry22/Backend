@@ -74,68 +74,73 @@
               </v-container>
             </v-card-text>
 
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-              <v-btn color="blue darken-1" text @click="save">Save</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-        </v-toolbar>
-      </template>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+                  <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+                </v-card-actions>
 
-      <template v-slot:item="props">
-        <v-flex
-          xs12
-          sm6
-          md4
-          lg3
-        >
-          <v-card>
-            <v-card-title class="subheading font-weight-bold">{{ props.item.employee_id }}</v-card-title>
+              </v-card>
+            </v-dialog>
+            </v-toolbar>
+          </template>
+
+          <template v-slot:item="props">
+            <v-flex
+              xs12
+              sm6
+              md4
+              lg3
+            >
+          <v-card >
+            <v-card-title class="subheading font-weight-bold" v-model="employee_id">{{ props.item.employee_id }}</v-card-title>
             <v-divider></v-divider>
             <v-list dense>
               <v-list-tile>
                 <v-list-tile-content>사원이름:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ props.item.employee_name }}</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_name }}</v-list-tile-content><br>
               </v-list-tile>
               <v-list-tile>
                 <v-list-tile-content>생년월일:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ props.item.employee_birth }}</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_birth }}</v-list-tile-content><br>
               </v-list-tile>
               <v-list-tile>
                 <v-list-tile-content>연락처:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ props.item.employee_phone }}</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_phone }}</v-list-tile-content><br>
               </v-list-tile>
               <v-list-tile>
                 <v-list-tile-content>직급:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ props.item.employee_rank }}</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_rank }}</v-list-tile-content><br>
               </v-list-tile>
               <v-list-tile>
                 <v-list-tile-content>직급급여:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ props.item.employee_rank_pay }}</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_rank_pay }}</v-list-tile-content><br>
               </v-list-tile>
               <v-list-tile>
                 <v-list-tile-content>계좌번호:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ props.item.employee_account_num }}</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_account_num }}</v-list-tile-content><br>
               </v-list-tile>
               <v-list-tile>
                 <v-list-tile-content>은행명:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ props.item.employee_account_bank }}</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_account_bank }}</v-list-tile-content><br>
               </v-list-tile>
               <v-list-tile>
                 <v-list-tile-content>입사날짜:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ props.item.employee_regi_date }}</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_regi_date }}</v-list-tile-content><br>
               </v-list-tile>
                <v-list-tile>
                 <v-list-tile-content>퇴사날짜:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ props.item.employee_quit_date }}</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ props.item.employee_quit_date }}</v-list-tile-content><br>
               </v-list-tile>
             </v-list>
-            <button @click="deleteItem(props.item.employee_id)">삭제</button>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1" text @click="editItem({item:employee_id})">Edit</v-btn>
+                  <v-btn color="blue darken-1" text @click="deleteItem({item:employee_id})">Delete</v-btn>
+                </v-card-actions>
           </v-card>
         </v-flex>
-      </template>
+     </template>
 
 
       
@@ -144,21 +149,21 @@
   </v-container>
 </template>
 
+
 <script>
 import {mapActions, mapState} from 'vuex'
 import axios from 'axios';
   export default {
-    data: () => ({
+    data(){
+      return{
       dialog: false,
-      rowsPerPageItems: [4, 8, 12],
-      pagination: {
-        rowsPerPage: 4
-      },
+      expand: false,
       Employee_list: [],
       editedIndex: -1,
       editedItem: {
-      },
-    }),
+        }
+      }
+    },
     mounted() {
       this.fetchEmployee()
     },
@@ -183,16 +188,17 @@ import axios from 'axios';
       },
 
       editItem (item) {
-        this.editedIndex = this.Employee_list.indexOf(item)
-        this.editedItem = Object.assign({}, item)
+        // this.editedIndex = this.Employee_list.indexOf(item)
+        // this.editedItem = Object.assign({}, item)
+        console.log(item)
         this.dialog = true
         this.employee_id=this.editedItem.employee_id
       },
 
-      deleteItem (employee_id) {
-        const index = this.Employee_list.indexOf(item)
-        this.deleteItem = Object.assign({}, item)
-
+      deleteItem (item) {       
+        const index = this.Employee_list.indexOf(employee_id)
+         this.deleteItem = Object.assign({}, employee_id)
+        console.log(item)
         this.employee_id=this.deleteItem.employee_id
 
         if(confirm('삭제하시겠습니까?')){
