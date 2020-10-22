@@ -1,14 +1,13 @@
 package com.project.example.domain;
 
-import java.util.Date;
-
 public class Stock {
 
 	public int stock_id;
 	public String stock_name;
-	public Date stock_regi_date;
-	public Date stock_expire_date;
+	public String stock_regi_date;
+	public String stock_expire_date;
 	public int stock_quantity;
+	
 	public int getStock_id() {
 		return stock_id;
 	}
@@ -21,16 +20,17 @@ public class Stock {
 	public void setStock_name(String stock_name) {
 		this.stock_name = stock_name;
 	}
-	public Date getStock_regi_date() {
+
+	public String getStock_regi_date() {
 		return stock_regi_date;
 	}
-	public void setStock_regi_date(Date stock_regi_date) {
+	public void setStock_regi_date(String stock_regi_date) {
 		this.stock_regi_date = stock_regi_date;
 	}
-	public Date getStock_expire_date() {
+	public String getStock_expire_date() {
 		return stock_expire_date;
 	}
-	public void setStock_expire_date(Date stock_expire_date) {
+	public void setStock_expire_date(String stock_expire_date) {
 		this.stock_expire_date = stock_expire_date;
 	}
 	public int getStock_quantity() {

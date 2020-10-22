@@ -82,6 +82,8 @@
 <script>
 import {mapActions, mapState} from 'vuex'
 import axios from 'axios';
+import moment from 'moment';
+
 
   export default {
     data: () => ({
@@ -119,6 +121,8 @@ import axios from 'axios';
       formTitle () {
         return this.editedIndex === -1 ? '재고 등록' : '수정'
       },
+      
+      ...mapState(["Userinfo"])
     },
 
     watch: {
@@ -152,8 +156,6 @@ import axios from 'axios';
         this.deleteItem = Object.assign({}, item)
 
         this.stock_id=this.deleteItem.stock_id
- 
-
         if(confirm('삭제하시겠습니까?')){
           axios
           .delete('http://localhost:9000/api/stock/delete/'+this.stock_id)

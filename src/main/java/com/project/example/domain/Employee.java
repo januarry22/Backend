@@ -1,19 +1,17 @@
 package com.project.example.domain;
 
-import java.util.Date;
-
 public class Employee {
 
 	private int employee_id;
 	private String employee_name;
-	private Date employee_birth;
+	private String employee_birth;
 	private String employee_phone;
 	private String employee_rank;
 	private int employee_rank_pay;
 	private String employee_account_num;
 	private String employee_account_bank;
-	private Date employee_regi_date;
-	private Date employee_quit_date;
+	private String employee_regi_date;
+	private String employee_quit_date;
 	public int getEmployee_id() {
 		return employee_id;
 	}
@@ -26,12 +24,7 @@ public class Employee {
 	public void setEmployee_name(String employee_name) {
 		this.employee_name = employee_name;
 	}
-	public Date getEmployee_birth() {
-		return employee_birth;
-	}
-	public void setEmployee_birth(Date employee_birth) {
-		this.employee_birth = employee_birth;
-	}
+
 	public String getEmployee_phone() {
 		return employee_phone;
 	}
@@ -62,16 +55,23 @@ public class Employee {
 	public void setEmployee_account_bank(String employee_account_bank) {
 		this.employee_account_bank = employee_account_bank;
 	}
-	public Date getEmployee_regi_date() {
+
+	public String getEmployee_birth() {
+		return employee_birth;
+	}
+	public void setEmployee_birth(String employee_birth) {
+		this.employee_birth = employee_birth;
+	}
+	public String getEmployee_regi_date() {
 		return employee_regi_date;
 	}
-	public void setEmployee_regi_date(Date employee_regi_date) {
+	public void setEmployee_regi_date(String employee_regi_date) {
 		this.employee_regi_date = employee_regi_date;
 	}
-	public Date getEmployee_quit_date() {
+	public String getEmployee_quit_date() {
 		return employee_quit_date;
 	}
-	public void setEmployee_quit_date(Date employee_quit_date) {
+	public void setEmployee_quit_date(String employee_quit_date) {
 		this.employee_quit_date = employee_quit_date;
 	}
 	@Override

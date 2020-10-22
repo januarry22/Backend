@@ -23,6 +23,27 @@
 
 </select>
 
+
+<!-- 회원 정보 불러오기(새로고침) -->
+<select id="readUser_refresh" resultType="UserInfo">
+			SELECT 
+				ta.user_id	username ,
+				ta.user_name user_name,
+				tb.u_auth	auth	
+			FROM user ta
+					LEFT JOIN ( 
+						SELECT ta.u_id,
+								GROUP_CONCAT(ta.u_auth SEPARATOR ",") u_auth
+						FROM 	user_auth	ta
+						GROUP BY	 ta.u_id
+								) tb ON ta.user_id=tb.u_id
+			WHERE	ta.user_id = #{username}
+
+</select>
+
+
+
+<!-- 권한 읽기 (새로고침) 
 <select id="readAuthorities_refresh" parameterType="String" resultType="org.springframework.security.core.authority.SimpleGrantedAuthority">
 	SELECT	u_auth
 	FROM	user_auth
@@ -30,6 +51,7 @@
 	AND		u_id = #{username}
 
 </select>
+-->
 
 <insert id="createUser" parameterType="User">
 	INSERT INTO User (

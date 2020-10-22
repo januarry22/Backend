@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,7 @@ public class StockController {
 		return ResponseEntity.ok(stList);
 	}
 	
+	
 	@PostMapping("/insert")
 	public ResponseEntity<?> insertStock(@RequestBody Stock stock){
 		stockService.insertStock(stock);
@@ -47,5 +49,6 @@ public class StockController {
 		stockService.deleteStock(stock_id);
 		return ResponseEntity.ok(stock_id);
 	}
+
 
 }

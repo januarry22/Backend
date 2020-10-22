@@ -1,14 +1,14 @@
 package com.project.example.domain;
 
-import java.util.Date;
 
 public class Expand {
 
 	public int expand_id;
 	public String expand_content;
-	public Date expand_date;
+	public String expand_date;
 	public int expand_price;
 	public String expand_val;
+	
 	public int getExpand_id() {
 		return expand_id;
 	}
@@ -21,10 +21,11 @@ public class Expand {
 	public void setExpand_content(String expand_content) {
 		this.expand_content = expand_content;
 	}
-	public Date getExpand_date() {
+
+	public String getExpand_date() {
 		return expand_date;
 	}
-	public void setExpand_date(Date expand_date) {
+	public void setExpand_date(String expand_date) {
 		this.expand_date = expand_date;
 	}
 	public int getExpand_price() {

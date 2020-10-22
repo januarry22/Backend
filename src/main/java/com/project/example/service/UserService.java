@@ -28,6 +28,6 @@ public interface UserService extends UserDetailsService{
 	public UserInfo readUser_refresh(String username);
 	
 	// 유저 권한 읽기 새로고침
-	public List<GrantedAuthority> readAuthorities_refresh(String username);
+	//public List<GrantedAuthority> readAuthorities_refresh(String username);
 	
 }

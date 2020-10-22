@@ -1,8 +1,10 @@
 package com.project.example.config;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.xml.bind.DatatypeConverter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.project.example.domain.User;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -47,10 +50,25 @@ public class JwtUtils {
 		
 	}
 	
-	// Request의 Header에서 token파싱 : "X-AUTH-TOKEN: jwt토큰"
-	public String resolveToken(HttpServletRequest req) {
-		return req.getHeader("X-AUTH-TOKEN");
+	private static Claims getClaimsFormToken(String token) {
+
+		return (Claims) Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(jwtSecret))
+				.parseClaimsJws(token).getBody();
 	}
+	
+	public static String getUserEmailFromToken(String token) {
+		Claims claims = getClaimsFormToken(token);
+		Map<String, Object> map = new HashMap<>(claims);
+		String username=(String) map.get("sub");
+		
+		return username;
+	}
+	
+	
+//	// Request의 Header에서 token파싱 : "X-AUTH-TOKEN: jwt토큰"
+//	public String resolveToken(HttpServletRequest req) {
+//		return req.getHeader("X-AUTH-TOKEN");
+//	}
 	
 	//jwt유효성 검사 메소드
 	public boolean validateJwtToken(String authToken) {

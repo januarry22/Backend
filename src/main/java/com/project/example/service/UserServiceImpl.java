@@ -61,11 +61,11 @@ public class UserServiceImpl implements UserService{
 		return userMapper.readUser_refresh(username);
 	}
 
-	@Override
-	public List<GrantedAuthority> readAuthorities_refresh(String username) {
-		// TODO Auto-generated method stub
-		return userMapper.readAuthorities_refresh(username);
-	}
+//	@Override
+//	public List<GrantedAuthority> readAuthorities_refresh(String username) {
+//		// TODO Auto-generated method stub
+//		return userMapper.readAuthorities_refresh(username);
+//	}
 
 	
 	

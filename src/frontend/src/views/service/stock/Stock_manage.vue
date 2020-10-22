@@ -134,7 +134,8 @@ import axios from 'axios';
       close () {
         console.log('Dialog closed')
       },
-       getColor (stock_expire_date) {
+      getColor (stock_expire_date) {
+
         if (stock_expire_date > 400) return 'red'
         else if (stock_expire_date > 200) return 'orange'
         else return 'green'

@@ -64,8 +64,11 @@ public class AuthController {
 		String jwt = jwtUtils.generateJwtToken(authentication);
 
 		User user = (User) authentication.getPrincipal();
-		List<String> roles = user.getAuthorities().stream().map(item -> item.getAuthority())
+		
+		List<String> roles = user.getAuthorities().stream()
+				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
+		
 		return ResponseEntity.ok(new JwtResponse(jwt, user.getUsername(), user.getUser_name(), roles));
 	}
 
@@ -102,14 +105,12 @@ public class AuthController {
 		token = request.getHeader("Authorization");
 		
 		if(org.springframework.util.StringUtils.hasText(token)&&token.startsWith("Bearer ")) {
-			token=token.substring(1, token.length());
+			token=token.substring(7, token.length());
 		}
 		
-		String username=jwtUtils.getUserNameFromJwtToken(token);
+		String username=JwtUtils.getUserEmailFromToken(token);
 		UserInfo user=userService.readUser_refresh(username);
-		
-		user.setAuthorities(userService.readAuthorities_refresh(username));
-
+	
 		return new ResponseEntity<>(user, HttpStatus.OK);
 		
 	}

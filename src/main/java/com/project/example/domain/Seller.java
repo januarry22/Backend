@@ -1,6 +1,5 @@
 package com.project.example.domain;
 
-import java.util.Date;
 
 public class Seller {
 	
@@ -8,7 +7,7 @@ public class Seller {
 	private String seller_name;
 	private int seller_tel;
 	private String seller_item;
-	private Date seller_regdate;
+	private String seller_regdate;
 	
 	
 	public int getSeller_id() {
@@ -35,10 +34,11 @@ public class Seller {
 	public void setSeller_item(String seller_item) {
 		this.seller_item = seller_item;
 	}
-	public Date getSeller_regdate() {
+
+	public String getSeller_regdate() {
 		return seller_regdate;
 	}
-	public void setSeller_regdate(Date seller_regdate) {
+	public void setSeller_regdate(String seller_regdate) {
 		this.seller_regdate = seller_regdate;
 	}
 	@Override

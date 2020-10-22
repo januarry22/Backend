@@ -117,6 +117,8 @@ export default new Vuex.Store({
         .catch(Error=>{
           console.log('error')
           reject(Error)
+          alert("아이디 중복")
+          router.push("/signup")
         })
       })
     }
