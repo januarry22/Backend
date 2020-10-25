@@ -31,9 +31,9 @@ public class StockController {
 	@Autowired
 	private StockService stockService;
 	
-	@GetMapping("/list")
-	public ResponseEntity<?> stockList(){
-		List<Stock> stList=stockService.selectStockList();
+	@GetMapping("/list/{stock_user_id}")
+	public ResponseEntity<?> stockList(@PathVariable(value="stock_user_id") String stock_user_id){
+		List<Stock> stList=stockService.selectStockList(stock_user_id);
 		return ResponseEntity.ok(stList);
 	}
 	

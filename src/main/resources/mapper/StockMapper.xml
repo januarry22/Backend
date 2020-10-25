@@ -5,7 +5,8 @@
 
 			<select id="selectStockList" resultType="Stock">
 				SELECT 	*
-				FROM	Stock			
+				FROM	Stock	
+				WHERE stock_user_id = #{stock_user_id}
 			
 			</select>
 
@@ -15,14 +16,16 @@
 				stock_name,
 				stock_regi_date,
 				stock_expire_date,
-				stock_quantity
+				stock_quantity,
+				stock_user_id
 				)
 				VALUES
 				(
 				#{stock_name},
 				now(),
 				#{stock_expire_date},
-				#{stock_quantity}
+				#{stock_quantity},
+				#{stock_user_id}
 				)
 			
 			</insert>

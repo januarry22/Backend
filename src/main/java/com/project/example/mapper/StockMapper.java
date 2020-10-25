@@ -9,7 +9,7 @@ import com.project.example.domain.Stock;
 @Mapper
 public interface StockMapper {
 	
-	public List<Stock> selectStockList();
+	public List<Stock> selectStockList(String stock_user_id);
 	
 	public void insertStock(Stock stock);
 

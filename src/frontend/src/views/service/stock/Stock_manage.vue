@@ -102,15 +102,20 @@ import axios from 'axios';
         Stock_list: [],
       }
     },
-     mounted(){
+    mounted(){
       this.fetchStock()
 
     },
+    computed:{
+
+      ...mapState(["Userinfo"])
+    },
 
     methods: {
-       fetchStock () {
+      fetchStock () {
+        this.stock_user_id=this.Userinfo.username
         axios
-          .get('http://localhost:9000/api/stock/list')
+          .get('http://localhost:9000/api/stock/list/'+this.stock_user_id)
           .then(Response=>
             this.Stock_list=Response.data
           )
@@ -141,7 +146,7 @@ import axios from 'axios';
         else return 'green'
       },
 
-            deleteItem (item) {
+      deleteItem (item) {
         const index = this.Stock_list.indexOf(item)
         this.deleteItem = Object.assign({}, item)
 

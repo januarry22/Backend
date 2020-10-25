@@ -104,16 +104,10 @@ import moment from 'moment';
       Stock_list: [],
       editedIndex: -1,
       editedItem: {
-        expand_content: '',
-        expand_date: '',
-        expand_price: '',
-        expand_val: '',
+
       },
       defaultItem: {
-        expand_content: '',
-        expand_date: Date,
-        expand_price: '',
-        expand_val: '',
+
       },
     }),
 
@@ -138,8 +132,9 @@ import moment from 'moment';
       initialize () {
       },
       fetchStock () {
+        this.stock_user_id=this.Userinfo.username
         axios
-          .get('http://localhost:9000/api/stock/list')
+          .get('http://localhost:9000/api/stock/list/'+this.stock_user_id)
           .then(Response=>
             this.Stock_list=Response.data
           )
@@ -148,6 +143,8 @@ import moment from 'moment';
       editItem (item) {
         this.editedIndex = this.Stock_list.indexOf(item)
         this.editedItem = Object.assign({}, item)
+        this.stock_user_id=this.Userinfo.username
+       // console.log(user_id)
         this.dialog = true
       },
 
@@ -177,6 +174,7 @@ import moment from 'moment';
 
       save () {
         this.stock_id=this.editedItem.stock_id
+        this.stock_user_id=this.Userinfo.username
        // console.log(this.expand_id)
         if (this.editedIndex > -1) {
           Object.assign(this.Stock_list[this.editedIndex], this.editedItem)
@@ -190,7 +188,9 @@ import moment from 'moment';
                 stock_name: this.editedItem.stock_name,
                 stock_regi_date: this.editedItem.stock_regi_date,
                 stock_expire_date: this.editedItem.stock_expire_date,
-                stock_quantity: this.editedItem.stock_quantity
+                stock_quantity: this.editedItem.stock_quantity,
+               // stock_user_id: this.editedItem.username
+
           })
           .then(Response=>{
             this.fetchStock()
@@ -198,12 +198,15 @@ import moment from 'moment';
         } else {
           this.Stock_list.push(this.editedItem)
 
+
           axios
           .post('http://localhost:9000/api/stock/insert',{
                 stock_name: this.editedItem.stock_name,
                 stock_regi_date: this.editedItem.stock_regi_date,
                 stock_expire_date: this.editedItem.stock_expire_date,
-                stock_quantity: this.editedItem.stock_quantity
+                stock_quantity: this.editedItem.stock_quantity,
+                stock_user_id: this.Userinfo.username
+
           })
           .then(Response=>{
             this.fetchStock()

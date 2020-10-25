@@ -15,9 +15,9 @@ public class StockServiceImpl implements StockService{
 	@Autowired StockMapper stockMapper;
 	
 	@Override
-	public List<Stock> selectStockList() {
+	public List<Stock> selectStockList(String stock_user_id) {
 		// TODO Auto-generated method stub
-		return stockMapper.selectStockList();
+		return stockMapper.selectStockList(stock_user_id);
 	}
 
 	@Override
