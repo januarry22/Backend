@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import axios from 'axios'
   const gradients = [
     ['#222'],
     ['#42b3f4'],
@@ -26,19 +27,21 @@
   ]
 
   export default {
-    data: () => ({
-      width: 2,
-      radius: 10,
-      padding: 8,
-      lineCap: 'round',
-      gradient: gradients[5],
-      value: [0, 2, 5, 9, 5, 10],
-      gradientDirection: 'top',
-      gradients,
-      fill: false,
-      type: 'trend',
-      autoLineWidth: false,
-    }),
+    data(){
+      // width: 2,
+      // radius: 10,
+      // padding: 8,
+      // lineCap: 'round',
+      // gradient: gradients[5],
+     return{
+      value: [],
+     } 
+      // gradientDirection: 'top',
+      // gradients,
+      // fill: false,
+      // type: 'trend',
+      // autoLineWidth: false,
+    },
 
     mounted(){
       this.fetchStock()
@@ -51,7 +54,7 @@
         axios
           .get('http://localhost:9000/api/stock/list/'+this.stock_user_id)
           .then(Response=>
-            this.Stock_list=Response.data
+            this.value=Response.data.stock_quantity
           )
       },
   }

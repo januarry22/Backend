@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.project.example.domain.Stock;
+import com.project.example.domain.Stock_sum;
 
 @Mapper
 public interface StockMapper {
@@ -15,5 +16,7 @@ public interface StockMapper {
 
 	public void deleteStock(int stock_id);
 
+	public List<Stock_sum> selectDateSum();
 	
+	public void insertStockAmount(Stock_sum sum);
 }
