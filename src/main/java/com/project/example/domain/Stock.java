@@ -1,5 +1,6 @@
 package com.project.example.domain;
 
+
 public class Stock {
 
 	public int stock_id;

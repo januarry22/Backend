@@ -129,8 +129,7 @@ import moment from 'moment';
     },
 
     methods: {
-      initialize () {
-      },
+  
       fetchStock () {
         this.stock_user_id=this.Userinfo.username
         axios
