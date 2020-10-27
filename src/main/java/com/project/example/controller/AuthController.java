@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mysql.cj.util.StringUtils;
 import com.project.example.config.JwtUtils;
 import com.project.example.domain.User;
 import com.project.example.domain.UserInfo;

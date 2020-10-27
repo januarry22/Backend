@@ -20,14 +20,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class ScheduledJob {
-	private static final Logger log = LoggerFactory.getLogger(ScheduledJob.class);
-	
+
 	private static final SimpleDateFormat dateFormat= new SimpleDateFormat("HH:mm:ss");
 	
 	@Autowired StockService stockservice;
 	
 	
-	@Scheduled(cron="0/1 * * * * *")
+
 	public void selectSum() {
 		
 		List<Stock_sum> stocksumList= stockservice.selectDateSum();
