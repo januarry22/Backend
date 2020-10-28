@@ -3,7 +3,7 @@ package com.project.example.service;
 import java.util.List;
 
 import com.project.example.domain.Stock;
-import com.project.example.domain.Stock_sum;
+import com.project.example.entity.Stock_sum;
 
 
 public interface StockService {

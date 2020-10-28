@@ -1,6 +1,5 @@
 package com.project.example.job;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +10,9 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.launch.support.SimpleJobLauncher;
+import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
@@ -19,84 +21,81 @@ import org.springframework.batch.item.database.support.SqlPagingQueryProviderFac
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
-import com.project.example.domain.Stock_sum;
+import com.project.example.domain.Stock;
 
-import lombok.Value;
-import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
 
-@Slf4j
+@RequiredArgsConstructor
 @Configuration
 public class StockBatchConfiguration {
-	public static final String JOB_NAME="stockBatchJob";
-	
+
+	private final JobBuilderFactory jobBuilderFactory;
+
+	private final StepBuilderFactory stepBuilderFactory;
+
+	private final DataSource dataSource; // DataSource DI
+
 	@Autowired
-	public JobBuilderFactory jobBuilderFactory;
-	
-	@Autowired
-	public StepBuilderFactory stepBuilderFactory;
-	
-	@Autowired
-    public DataSource dataSource; // DataSource DI
-	
+	private JobRepository stockRepository;
+
 	private int chunkSize;
-	
-	@org.springframework.beans.factory.annotation.Value("${chunkSize:1000}")
+
+	@Bean
+	public JobLauncher stockLauncher() throws Exception {
+		SimpleJobLauncher jobLauncher = new SimpleJobLauncher();
+		jobLauncher.setJobRepository(stockRepository);
+		jobLauncher.setTaskExecutor(new SimpleAsyncTaskExecutor());
+		jobLauncher.afterPropertiesSet();
+		return jobLauncher;
+	}
+
+	@org.springframework.beans.factory.annotation.Value("${chunkSize:5}")
 	public void setChunkSize(int chunkSize) {
-		this.chunkSize=chunkSize;
+		this.chunkSize = chunkSize;
+
 	}
-	
+
+	@Bean(name = "stockBatchJob")
+	public Job StockJob() throws Exception {
+		return jobBuilderFactory.get("stockBatchJob").start(StockStep()).build();
+	}
+
 	@Bean
-	public Job StockJob() throws Exception{
-		return jobBuilderFactory.get(JOB_NAME)
-				.start(StockStep())
-				.build();
+	public Step StockStep() throws Exception {
+		return stepBuilderFactory.get("StockStep").<Stock, Stock>chunk(chunkSize).reader(stockItemReader(null))
+				.writer(stockItmeWriter()).build();
 	}
-	
-	@Bean
-	public Step StockStep() throws Exception{
-		return stepBuilderFactory.get("stockBatchJob")
-				.<Stock_sum, Stock_sum>chunk(chunkSize)
-				.reader(stockItemReader(null))
-				.writer(stockItmeWriter())
-				.build();
-	}
-	
+
 	@Bean
 	@StepScope
-	public JdbcPagingItemReader<Stock_sum> stockItemReader(
-			@Value("#{jobParameters[stockDay]}") String stockDay) throws Exception{
-		
-		Map<String, Object> params= new HashMap<>();
-		params.put("stockDay", LocalDate.parse(stockDay));
-		
-		 SqlPagingQueryProviderFactoryBean queryProvider = new SqlPagingQueryProviderFactoryBean();
-	        queryProvider.setDataSource(dataSource);
-	        queryProvider.setSelectClause("stock_day, sum(amount) as amount_sum");
-	        queryProvider.setFromClause("from sales");
-	        queryProvider.setWhereClause("where order_date =:orderDate");
-	        queryProvider.setGroupClause("group by order_date");
-	        queryProvider.setSortKey("order_date");
-	        
-	        return new JdbcPagingItemReaderBuilder<StockSum>()
-	        		.name("stockItemReader")
-	                .pageSize(chunkSize)
-	                .fetchSize(chunkSize)
-	                .dataSource(dataSource)
-	                .rowMapper(new BeanPropertyRowMapper<>(StockSum.class))
-	                .queryProvider(queryProvider.getObject())
-	                .parameterValues(params)
-	                .build();
+	public JdbcPagingItemReader<Stock> stockItemReader(
+			@org.springframework.beans.factory.annotation.Value("#{jobParameters[stock_user_id]}") String stock_user_id)
+			throws Exception {
+
+		Map<String, Object> params = new HashMap<>();
+		params.put("stock_user_id", stock_user_id);
+
+		SqlPagingQueryProviderFactoryBean queryProvider = new SqlPagingQueryProviderFactoryBean();
+		queryProvider.setDataSource(dataSource);
+		queryProvider.setSelectClause("stock_regi_date, sum(stock_quantity) as stock_day_sum");
+		queryProvider.setFromClause("from stock");
+		queryProvider.setWhereClause("where stock_user_id =:stock_user_id");
+		queryProvider.setGroupClause("group by stock_regi_date");
+		queryProvider.setSortKey("stock_regi_date");
+
+		return new JdbcPagingItemReaderBuilder<Stock>().name("stockItemReader").pageSize(chunkSize).fetchSize(chunkSize)
+				.dataSource(dataSource).rowMapper(new BeanPropertyRowMapper<>(Stock.class))
+				.queryProvider(queryProvider.getObject()).parameterValues(params).build();
 	}
-	
+
 	@Bean
-	public JdbcBatchItemWriter<StockSum> stockItmeWriter(){
-		return new JdbcBatchItemWriterBuilder<StockSum>()
-				.dataSource(dataSource)
-				.sql("insert into Stock_sum() values()")
-				.beanMapped()
-				.build();
+	public JdbcBatchItemWriter<Stock> stockItmeWriter() {
+		return new JdbcBatchItemWriterBuilder<Stock>().dataSource(dataSource)
+				.sql("insert into Stock_sum(stock_user_id,stock_day_sum, stock_day) values(:stock_user_id, :stock_day_sum, :stock_regi_date)")
+				.beanMapped().build();
 	}
-			
+
 }

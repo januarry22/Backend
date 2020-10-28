@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.example.domain.Stock;
-import com.project.example.domain.Stock_sum;
+import com.project.example.entity.Stock_sum;
 import com.project.example.mapper.StockMapper;
 
 

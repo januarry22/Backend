@@ -37,27 +37,10 @@
 				
 			</delete>
 			
-			<select id="selectDateSum" resultType="Stock_sum">
-			SELECT 
-				DATE(stock_regi_date) AS stock_day , 
-				SUM(stock_quantity) AS stock_day_sum
-			FROM stock
-			GROUP BY stock_day 
-			</select>
+
 			
 			
-			<insert id="insertStockAmount" parameterType="Stock_sum">
-				INSERT INTO stock_sum
-				(
-				stock_day_sum,
-				stock_day
-				)VALUES(
-				#{stock_day_sum},
-				#{stock_day}
-				)
-			
-			
-			</insert>
+	
 
 
 </mapper>

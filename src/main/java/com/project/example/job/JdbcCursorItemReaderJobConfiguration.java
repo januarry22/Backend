@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
-import com.project.example.domain.Stock_sum;
+import com.project.example.entity.Stock_sum;
 
 
 //import lombok.extern.slf4j.Slf4j;
