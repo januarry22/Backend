@@ -1,7 +1,12 @@
 package com.project.example.entity;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,15 +17,24 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
+@Entity
 public class Stock_sum {
 
-	private int id;
+
+
+	@Id
+	@GeneratedValue
+	private String stock_user_id;
 	private int stock_day_sum;
 	private String stock_day;
 	
+	
 
 
-	@Builder
+	public Stock_sum(String stock_user_id) {
+		this.stock_user_id = stock_user_id;
+	}
+
 	public Stock_sum(int stock_day_sum, String stock_day) {
 		this.stock_day_sum = stock_day_sum;
 		this.stock_day = stock_day;
@@ -28,11 +42,7 @@ public class Stock_sum {
 
 
 
-	public Stock_sum(int id, int stock_day_sum, String stock_day) {
-		this.id = id;
-		this.stock_day_sum = stock_day_sum;
-		this.stock_day = stock_day;
-	}
+	
 	
 	
 	

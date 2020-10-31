@@ -15,6 +15,15 @@ spring:
      username: root 
      password: 1234 
      driver-Class-Name: com.mysql.cj.jdbc.Driver
+  jpa:
+     database : mysql
+     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+     generate-ddl: true
+     show-sql: true
+           
+  batch:
+    job:
+      names: ${job.name:NONE}
   
   servlet:
       multipart:

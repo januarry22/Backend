@@ -39,10 +39,8 @@ public class StockController {
 	@Autowired
 	private StockService stockService;
 	
-	@Autowired
 	private final JobLauncher stockLauncher;
 	
-	@Autowired
 	private final Job stockBatchJob;
 	
 //	private JobParameters stockParam() {
@@ -67,6 +65,8 @@ public class StockController {
 		
 		return ResponseEntity.ok(stList);
 	}
+	
+	//@GetMapping("/jobLaunch/{stock_user_id}")
 	
 	
 	@PostMapping("/insert")
