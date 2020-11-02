@@ -15,7 +15,6 @@ export default new Vuex.Store({
       },
     Expand_list:[],
 
-
     login_err: false,
     login_success: false
   },
@@ -25,7 +24,7 @@ export default new Vuex.Store({
       state.Userinfo.user_name=data.user_name
       state.Userinfo.authorities=data.authorities
       state.Userinfo.user_token=data.token
-
+      state.login_success=true
       router.push("/mypage")
     },
     INSERT_TOKEN(state){
@@ -43,6 +42,7 @@ export default new Vuex.Store({
       state.Userinfo.user_name=data.user_name
       state.Userinfo.authorities=data.authorities
       state.Userinfo.user_token=data.token
+      state.login_success=true
     },
     logout(state){
       state.Userinfo.username=null

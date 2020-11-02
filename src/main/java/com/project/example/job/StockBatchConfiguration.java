@@ -99,7 +99,6 @@ public class StockBatchConfiguration {
 		queryProvider.setGroupClause("group by stock_day");
 		queryProvider.setSortKey("stock_day");
 
-		System.out.print(stock_user_id);
 		
 		return new JdbcPagingItemReaderBuilder<Stock_sum>().name("stockItemReader")
 				.pageSize(chunkSize).fetchSize(chunkSize)
@@ -140,9 +139,9 @@ public class StockBatchConfiguration {
 	}
 	
 //	@Bean
-//	public ItemWriter<Stock> stockItmeWriter(){
+//	public ItemWriter<Stock_sum> stockItemWriter(){
 //		return list ->{
-//			for(Stock stock:list) {
+//			for(Stock_sum stock:list) {
 //				log.info("Stock data:",stock);
 //				System.out.print("Stock data:"+stock);
 //			}

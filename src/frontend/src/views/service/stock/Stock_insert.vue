@@ -205,7 +205,6 @@ import moment from 'moment';
                 stock_expire_date: this.editedItem.stock_expire_date,
                 stock_quantity: this.editedItem.stock_quantity,
                 stock_user_id: this.Userinfo.username
-
           })
           .then(Response=>{
             this.fetchStock()

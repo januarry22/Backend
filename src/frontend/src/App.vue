@@ -46,7 +46,7 @@
             <v-btn router :to="{name:'Login' }">
               <v-icon>mdi-account-circle</v-icon>로그인
             </v-btn>
-            <v-btn @click="logout()">
+            <v-btn v-if="login_success==true" @click="logout()">
                <v-icon>mdi-logout </v-icon>로그아웃
             </v-btn>
 
@@ -78,7 +78,8 @@ import {mapState, mapMutations} from 'vuex'
       drawer: null,
     }),
     computed:{
-      ...mapState(["Userinfo"])
+      ...mapState(["Userinfo"]),
+      ...mapState(["login_success"])
     },
     created(){
       if(this.Userinfo.user_token==null&&localStorage.getItem("token")!==null){

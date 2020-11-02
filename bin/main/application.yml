@@ -1,9 +1,7 @@
 spring:
   profiles:
-    active:
-    - local
+    active: local
 
-  logging.level.org.springframework.batch: DEBUG
 ---
 
 spring:
@@ -20,10 +18,13 @@ spring:
      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
      generate-ddl: true
      show-sql: true
+     open-in-view: false
            
   batch:
     job:
       names: ${job.name:NONE}
+      
+  logging.level.org.springframework.batch: DEBUG
   
   servlet:
       multipart:
