@@ -14,8 +14,8 @@ public interface StockService {
 
 	public void deleteStock(int stock_id);
 	
-	public List<Stock_sum> selectDateSum();
+	//public List<Stock_sum> selectDateSum();
 	
-	public void insertStockAmount(Stock_sum sum);
+	//public void insertStockAmount(Stock_sum sum);
 
 }

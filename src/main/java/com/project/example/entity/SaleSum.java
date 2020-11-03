@@ -15,32 +15,26 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @Entity
-public class Sale_sum {
+public class SaleSum {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-//	private String sale_user_id;
-	
-	private int sale_sum;
+	private int sale_amount;
 	private String sale_date;
 	
 	
-	public Sale_sum(long id, int sale_sum, String sale_date) {
-		this.id = id;
-		this.sale_sum = sale_sum;
-		this.sale_date = sale_date;
-	}
+//	public Sale_sum(long id, int sale_sum, String sale_date) {
+//		this.id = id;
+//		this.sale_sum = sale_sum;
+//		this.sale_date = sale_date;
+//	}
 
 
-	public Sale_sum(int sale_sum, String sale_date) {
-		this.sale_sum = sale_sum;
+	public SaleSum(int sale_amount, String sale_date) {
+		this.sale_amount = sale_amount;
 		this.sale_date = sale_date;
 	}
-	
-	
-	
 	
 }

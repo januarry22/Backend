@@ -21,37 +21,47 @@
                         label="이름"
                         required
                     ></v-select>
-                  <v-menu
-                        ref="menu"
-                        v-model="menu"
-                        :close-on-content-click="false"
-                        :return-value.sync="date"
-                        transition="scale-transition"
-                        offset-y
-                        max-width="290px"
-                        min-width="290px"
-                    >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-text-field
-                            v-model="date"
-                            label="날짜"
-                            readonly
-                            v-bind="attrs"
-                            v-on="on"
-                            suffix="Date"
-                      ></v-text-field>
-                    </template>
-                    <v-date-picker
-                        v-model="date"
-                        type="month"
-                        no-title
-                        scrollable
-                    >
-                    <v-spacer></v-spacer>
-                        <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-                        <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
-                    </v-date-picker>
-                  </v-menu>
+
+      <v-menu
+        ref="menu"
+        v-model="menu"
+        :close-on-content-click="false"
+        :return-value.sync="date"
+        transition="scale-transition"
+        offset-y
+        min-width="290px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+            v-model="date"
+            label="날짜"
+            readonly
+            v-bind="attrs"
+            v-on="on"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+          v-model="date"
+          no-title
+          scrollable
+        >
+          <v-spacer></v-spacer>
+          <v-btn
+            text
+            color="primary"
+            @click="menu = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            text
+            color="primary"
+            @click="$refs.menu.save(date)"
+          >
+            OK
+          </v-btn>
+        </v-date-picker>
+      </v-menu>
 
                     <v-text-field
                         label="출근 시간"
@@ -145,8 +155,11 @@
 
 <script>
   export default {
-    data () {
-      return {
+    data:()=> ({
+  
+          
+        date: new Date().toISOString().substr(0, 10),
+        menu: false,
         pagination: {},
         memo: 'memo',
         headers: [
@@ -163,8 +176,8 @@
           { text: 'Iron (%)', value: 'iron' },
         ],
         employee_name: [],
-      }
-    },
+      
+    }),
     methods: {
       save () {
         this.snack = true

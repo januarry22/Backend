@@ -2,6 +2,8 @@ spring:
   profiles:
     active: local
 
+  logging.level.org.springframework.batch: DEBUG
+  
 ---
 
 spring:
@@ -20,11 +22,7 @@ spring:
      show-sql: true
      open-in-view: false
            
-  batch:
-    job:
-      names: ${job.name:NONE}
       
-  logging.level.org.springframework.batch: DEBUG
   
   servlet:
       multipart:

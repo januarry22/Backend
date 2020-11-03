@@ -43,12 +43,12 @@ public class Stock_sum {
 		this.stock_day = stock_day;
 	}
 
-	public Stock_sum(Long id, String stock_user_id, int stock_day_sum, String stock_day) {
-		this.id = id;
-		this.stock_user_id = stock_user_id;
-		this.stock_day_sum = stock_day_sum;
-		this.stock_day = stock_day;
-	}
+//	public Stock_sum(Long id, String stock_user_id, int stock_day_sum, String stock_day) {
+//		this.id = id;
+//		this.stock_user_id = stock_user_id;
+//		this.stock_day_sum = stock_day_sum;
+//		this.stock_day = stock_day;
+//	}
 
 
 
