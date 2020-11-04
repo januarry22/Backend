@@ -59,7 +59,7 @@ import axios from 'axios';
           .get('http://localhost:9000/api/sale/list/'+this.sale_user_id)
           .then(Response=>
             this.Sale_list=Response.data
-          )
+        )
       },
     }
   }

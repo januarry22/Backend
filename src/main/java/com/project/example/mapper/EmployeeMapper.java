@@ -15,4 +15,6 @@ public interface EmployeeMapper {
 	
 	public void deleteEmployee(int employee_id);
 
+	public List<Employee> selectEmployeeNameList(String employee_user_id);
+
 }

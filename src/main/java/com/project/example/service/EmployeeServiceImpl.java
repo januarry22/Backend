@@ -30,6 +30,12 @@ public class EmployeeServiceImpl implements EmployeeService{
 		// TODO Auto-generated method stub
 		employeeMapper.deleteEmployee(employee_id);
 	}
+
+	@Override
+	public List<Employee> selectEmployeeNameList(String employee_user_id) {
+		// TODO Auto-generated method stub
+		return employeeMapper.selectEmployeeNameList(employee_user_id);
+	}
 	
 	
 

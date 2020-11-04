@@ -103,6 +103,7 @@ import axios from 'axios';
       editedItem: {
       },
       defaultItem: {
+        seller_regdate: new Date().toISOString().substr(0, 10)
       },
     }),
 

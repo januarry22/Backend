@@ -32,19 +32,19 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                 <v-col cols="12" sm="6" md="4">
+                 <v-col cols="12" md="4">
                     <v-text-field v-model="editedItem.expand_id" label="id"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" md="4">
                     <v-text-field v-model="editedItem.expand_content" label="지출내역"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" md="4">
                     <v-text-field v-model="editedItem.expand_date" label="지출날짜"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" md="4">
                     <v-text-field v-model="editedItem.expand_price" label="지출가격"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" md="4">
                     <v-text-field v-model="editedItem.expand_val" label="지출유형"></v-text-field>
                   </v-col>
                 </v-row>
@@ -110,7 +110,7 @@ import axios from 'axios';
       },
       defaultItem: {
         expand_content: 'ex) 물품구입',
-        expand_date: new Date(),
+        expand_date: new Date().toISOString().substr(0, 10),
         expand_price: 'ex) 25000',
         expand_val: 'ex) 카드',
       },

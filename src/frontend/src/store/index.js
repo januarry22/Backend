@@ -50,7 +50,7 @@ export default new Vuex.Store({
       state.Userinfo.authorities=null
       state.Userinfo.user_token=null
       localStorage.removeItem("token")
-      console.log(state.Userinfo)
+      router.push('/home')
     }
 
   },

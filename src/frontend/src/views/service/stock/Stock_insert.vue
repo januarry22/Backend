@@ -32,19 +32,19 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" md="4">
                     <v-text-field v-model="editedItem.stock_id" label="재고 ID"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12" md="4">
                     <v-text-field v-model="editedItem.stock_name" label="재고명"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12"  md="4">
                     <v-text-field v-model="editedItem.stock_regi_date" label="재고등록날짜"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12"  md="4">
                     <v-text-field v-model="editedItem.stock_expire_date" label="재고유통기한"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12"  md="4">
                     <v-text-field v-model="editedItem.stock_quantity" label="재고량"></v-text-field>
                   </v-col>
                 </v-row>
@@ -107,7 +107,7 @@ import moment from 'moment';
 
       },
       defaultItem: {
-
+        stock_regi_date: new Date().toISOString().substr(0, 10)
       },
     }),
 

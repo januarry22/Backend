@@ -40,7 +40,7 @@
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>회계 서비스</v-toolbar-title>
+      <v-toolbar-title>장부 서비스</v-toolbar-title>
        <v-spacer></v-spacer>
           <v-toolbar-items>
             <v-btn router :to="{name:'Login' }">

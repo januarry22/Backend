@@ -47,8 +47,8 @@ import axios from 'axios';
 import Expand_report from './Expand_report'
   export default {
     
-    data () {
-      return {
+    data: ()=> ({
+   
         items: ['카드','현금'],
         search: '',
         headers: [
@@ -64,8 +64,8 @@ import Expand_report from './Expand_report'
           { text: '결제 유형', value: 'expand_val' },
         ],
         Expand_list: [],
-      }
-    },
+
+    }),
     components: {
       Expand_report
     },    

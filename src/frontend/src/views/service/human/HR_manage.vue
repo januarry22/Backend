@@ -40,34 +40,34 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12"  md="4">
                     <v-text-field v-model="editedItem.employee_id" label="사원 ID"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12"  md="4">
                     <v-text-field v-model="editedItem.employee_name" label="사원이름"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12"  md="4">
                     <v-text-field v-model="editedItem.employee_birth" label="생년월일"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12"  md="4">
                     <v-text-field v-model="editedItem.employee_phone" label="연락처"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12"  md="4">
                     <v-text-field v-model="editedItem.employee_rank" label="직급"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12"  md="4">
                     <v-text-field v-model="editedItem.employee_rank_pay" label="직급 급여"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12"  md="4">
                     <v-text-field v-model="editedItem.employee_account_num" label="계좌번호"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12"  md="4">
                     <v-text-field v-model="editedItem.employee_account_bank" label="은행명"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12"  md="4">
                     <v-text-field v-model="editedItem.employee_regi_date" label="입사날짜"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col cols="12"  md="4">
                     <v-text-field v-model="editedItem.employee_quit_date" label="퇴사날짜"></v-text-field>
                   </v-col>
                 </v-row>
@@ -161,7 +161,10 @@ import axios from 'axios';
       Employee_list: [],
       editedIndex: -1,
       editedItem: {
-        }
+        },
+      defaultItem: {
+        employee_regi_date: new Date().toISOString().substr(0, 10)
+      },
       }
     },
     mounted() {

@@ -11,4 +11,6 @@ public interface EmployeeService {
 	public void insertEmployee(Employee employee);
 	
 	public void deleteEmployee(int employee_id);
+
+	public List<Employee> selectEmployeeNameList(String employee_user_id);
 }

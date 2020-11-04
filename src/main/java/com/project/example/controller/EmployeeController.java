@@ -47,4 +47,10 @@ public class EmployeeController {
 		employeeService.deleteEmployee(employee_id);
 		return ResponseEntity.ok(employee_id);
 	}
+	
+	@GetMapping("/employee_nameList/{employee_user_id}")
+	public ResponseEntity<?> employee_nameList(@PathVariable(value="employee_user_id") String employee_user_id){
+		List<Employee> nameList=employeeService.selectEmployeeNameList(employee_user_id);
+		return ResponseEntity.ok(nameList);
+	}
 }

@@ -7,6 +7,13 @@
 				FROM	Employee		
 			
 			</select>
+			
+			<select id="selectEmployeeNameList" resultType="Employee">
+				SELECT employee_name,employee_rank_pay
+				FROM	Employee		
+				WHERE employee_user_id = #{employee_user_id}
+			
+			</select>
 
 			<insert id="insertEmployee" parameterType="Employee">
 				INSERT INTO	Employee
