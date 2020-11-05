@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.example.mapper.StockMapper">
+
+
+			<select id="selectStockList" resultType="Stock">
+				SELECT 	*
+				FROM	Stock	
+				WHERE stock_user_id = #{stock_user_id}
+			
+			</select>
+
+			<insert id="insertStock" parameterType="Stock">
+				INSERT INTO	Stock
+				(
+				stock_name,
+				stock_regi_date,
+				stock_expire_date,
+				stock_quantity,
+				stock_user_id
+				)
+				VALUES
+				(
+				#{stock_name},
+				now(),
+				#{stock_expire_date},
+				#{stock_quantity},
+				#{stock_user_id}
+				)
+			
+			</insert>
+			
+			<delete id="deleteStock" parameterType="Integer">
+			DELETE
+			FROM Stock
+			WHERE stock_id = #{stock_id}
+				
+			</delete>
+			
+
+			
+			
+	
+
+
+</mapper>

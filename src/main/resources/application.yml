@@ -1,38 +1,45 @@
 spring:
   profiles:
-    active:
-    - local
+    active: local
 
+  logging.level.org.springframework.batch: DEBUG
+  
 ---
-
 
 spring:
   profiles:
   - local
          
   datasource: 
-     url: jdbc:mysql://localhost:3306/Project?characterEncoding=UTF-8&serverTimezone=UTC
+     url: jdbc:mysql://127.0.0.1:3306/projectadmin?characterEncoding=UTF-8&serverTimezone=UTC
      username: root 
      password: 1234 
      driver-Class-Name: com.mysql.cj.jdbc.Driver
- 
-  devtools:
-    livereload:
-      enabled: true
-    restart:
-      log-condition-evaluation-delta: false
+  jpa:
+     database : mysql
+     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+     generate-ddl: true
+     show-sql: true
+     open-in-view: false
+           
+      
   
   servlet:
       multipart:
         max-file-size: 1000MB
         max-request-size: 1000MB        
         enabled: true      
-   
+  
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      log-condition-evaluation-delta: false 
       
 server:
  port: 9000
  tomcat:
-    file-encoding: UTF-8
+    uri-encoding: UTF-8
     
  servlet:
     encoding:
@@ -50,6 +57,6 @@ logging:
   config: classpath:logback-spring.xml  
 
 mybatis:
-  type-aliases-package: com.lcomputerstudy.example.domain
+  type-aliases-package: com.project.example.domain
   mapper-locations: mapper/**/*.xml
  
