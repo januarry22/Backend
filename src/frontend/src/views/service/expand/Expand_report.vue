@@ -1,17 +1,10 @@
 <template>
-  <v-sparkline
-    :value="value"
-    :gradient="gradient"
-    :smooth="radius || false"
-    :padding="padding"
-    :line-width="width"
-    :stroke-linecap="lineCap"
-    :gradient-direction="gradientDirection"
-    :fill="fill"
-    :type="type"
-    :auto-line-width="autoLineWidth"
-    auto-draw
-  ></v-sparkline>
+  <div class="container">
+    <line-chart
+      v-if="loaded"
+      :chartdata="chartdata"
+      :options="options"/>
+  </div>
   
 </template>
 
@@ -52,9 +45,10 @@ import axios from 'axios'
         fetchStock () {
         this.stock_user_id=this.Userinfo.username
         axios
-          .get('http://localhost:9000/api/stock/list/'+this.stock_user_id)
+          .get('http://localhost:9000/api/stock/selectDaySum/'+this.stock_user_id)
           .then(Response=>
             this.value=Response.data.stock_quantity
+          
           )
       },
   }

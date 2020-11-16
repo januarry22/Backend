@@ -37,6 +37,13 @@
 				
 			</delete>
 			
+			<select id="selectDaySum" resultType="Stock">
+			SELECT 
+			DATE(stock_regi_date) AS stock_day , SUM(stock_quantity) AS stock_day_sum 
+			FROM stock 
+			where stock_user_id = #{stock_user_id}  
+			GROUP BY stock_day;
+			</select>
 
 			
 			

@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
+    :items="stockSum"
     :items-per-page="5"
     item-key="name"
     class="elevation-1"
@@ -16,60 +16,41 @@
 </template>
 
 <script>
+import axios from 'axios'
+import {mapState} from 'vuex'
   export default {
     data () {
       return {
         headers: [
           {
-            text: 'Dessert (100g serving)',
+            text: '날짜',
             align: 'start',
-            value: 'name',
+            value: 'stock_day',
           },
-          { text: 'Category', value: 'category' },
+          { text: '일별합계', value: 'stock_day_sum' },
         ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            category: 'Ice cream',
-          },
-          {
-            name: 'Ice cream sandwich',
-            category: 'Ice cream',
-          },
-          {
-            name: 'Eclair',
-            category: 'Cookie',
-          },
-          {
-            name: 'Cupcake',
-            category: 'Pastry',
-          },
-          {
-            name: 'Gingerbread',
-            category: 'Cookie',
-          },
-          {
-            name: 'Jelly bean',
-            category: 'Candy',
-          },
-          {
-            name: 'Lollipop',
-            category: 'Candy',
-          },
-          {
-            name: 'Honeycomb',
-            category: 'Toffee',
-          },
-          {
-            name: 'Donut',
-            category: 'Pastry',
-          },
-          {
-            name: 'KitKat',
-            category: 'Candy',
-          },
-        ],
+        stockSum: [],
       }
     },
+    mounted(){
+      this.fetchStocksum()
+
+    },
+    computed:{
+      
+      ...mapState(["Userinfo"])
+    },
+
+    methods: {
+        fetchStocksum() {
+        this.stock_user_id=this.Userinfo.username
+        axios
+          .get('http://localhost:9000/api/stock/selectDaySum/'+this.stock_user_id)
+          .then(Response=>
+            this.stockSum=Response.data
+          
+          )
+      },
+  }
   }
 </script>

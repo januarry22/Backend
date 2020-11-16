@@ -33,11 +33,11 @@ public class StockServiceImpl implements StockService{
 		stockMapper.deleteStock(stock_id);
 	}
 
-//	@Override
-//	public List<Stock_sum> selectDateSum() {
-//		// TODO Auto-generated method stub
-//		return stockMapper.selectDateSum();
-//	}
+	@Override
+	public List<Stock> selectDaySum(String stock_user_id) {
+		// TODO Auto-generated method stub
+		return stockMapper.selectDaySum(stock_user_id);
+	}
 
 //	@Override
 //	public void insertStockAmount(Stock_sum sum) {

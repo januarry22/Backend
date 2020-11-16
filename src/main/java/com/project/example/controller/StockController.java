@@ -80,6 +80,14 @@ public class StockController {
 		stockService.deleteStock(stock_id);
 		return ResponseEntity.ok(stock_id);
 	}
+	
+	@GetMapping("/selectDaySum/{stock_user_id}")
+	public ResponseEntity<?> selectDaySum(@PathVariable(value="stock_user_id") String stock_user_id){
+		
+		List<Stock> sumList=stockService.selectDaySum(stock_user_id);
+
+		return ResponseEntity.ok(sumList);
+	}
 
 
 }

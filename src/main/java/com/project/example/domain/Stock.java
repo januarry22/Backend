@@ -20,6 +20,10 @@ public class Stock {
 	private int stock_quantity;
 	private String stock_user_id;
 	
+	private int stock_day_sum;
+	private String stock_day;
+	
+	
 	
 	public Stock(int stock_id, String stock_regi_date, int stock_quantity) {
 		this.stock_id = stock_id;

@@ -12,7 +12,7 @@
                     <v-card-text>
                     <v-sheet color="rgba(0, 0, 0, .12)">
                         <v-sparkline
-                        :value="value"
+                        :value="stockSum"
                         color="rgba(255, 255, 255, .7)"
                         height="100"
                         padding="24"
@@ -20,7 +20,7 @@
                         smooth
                         >
                         <template v-slot:label="item">
-                            ${{ item.value }}
+                            ${{ item.stockSum }}
                         </template>
                         </v-sparkline>
                     </v-sheet>
@@ -40,17 +40,29 @@
 </template>
 
 <script>
+import axios from 'axios'
+import {mapState} from 'vuex'
   export default {
     data: () => ({
        date: new Date().toISOString().substr(0, 10),
-       value: [
-         
-       ],
+       stockSum: [],
     }),
     computed:{
       values(){
         return this.sumList.map(x=>x.count);
-      }
+      },
+      ...mapState(["Userinfo"])
+    },
+    mounted:{
+      fetchStock () {
+        this.stock_user_id=this.Userinfo.username
+        axios
+          .get('http://localhost:9000/api/stock/selectDaySum/'+this.stock_user_id)
+          .then(Response=>
+            this.stockSum=Response.data
+          
+          )
+      },
     }
   }
 </script>
