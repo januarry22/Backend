@@ -1,8 +1,10 @@
 <template>
   <v-container class="grey lighten-5">
-    <v-row>
-
-    <v-col sm="8">
+  
+        <v-card full-width>
+           <Expand_report/>
+        </v-card>
+        
     <v-card>
         <v-card-title>
             <v-select
@@ -28,15 +30,8 @@
                 class="elevation-1"
             ></v-data-table>
         </v-card>
-        </v-col>
 
-    <v-col sm="4">
-        <v-card full-width>
-           <Expand_report/>
-        </v-card>
-    </v-col>`
 
-    </v-row>
   </v-container>
 </template>
 

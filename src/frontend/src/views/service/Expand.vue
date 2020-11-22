@@ -15,6 +15,7 @@
     <v-tab href="#tab-3">
       지출 통계
     </v-tab>
+
   </v-tabs>
     <v-tabs-items v-model="tab">
         <v-tab-item 
@@ -44,6 +45,7 @@
 import Expand_manage from './expand/Expand_manage'
 import Expand_amount from './expand/Expand_amount'
 import Expand_info from './expand/Expand_info'
+
   export default {
     data () {
       return {
@@ -53,7 +55,8 @@ import Expand_info from './expand/Expand_info'
     components : {
         Expand_manage,
         Expand_amount,
-        Expand_info
+        Expand_info,
+    
     }
   }
 </script>

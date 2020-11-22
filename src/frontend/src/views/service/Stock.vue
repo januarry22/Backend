@@ -12,6 +12,9 @@
     <v-tab href="#tab-2">
       재고 관리
     </v-tab>
+    <v-tab href="#tab-3">
+      재고 보고서
+    </v-tab>
 
   </v-tabs>
     <v-tabs-items v-model="tab">
@@ -27,6 +30,10 @@
               <b v-if ="i===2">
               <Stock_manage/></b>
             </v-card>
+            <v-card flat>
+              <b v-if ="i===3">
+              <Stock_report/></b>
+            </v-card>
 
         </v-tab-item>
         </v-tabs-items>
@@ -37,6 +44,7 @@
 <script>
 import Stock_manage from './stock/Stock_manage'
 import Stock_insert from './stock/Stock_insert'
+import Stock_report from './stock/Stock_report'
   export default {
     data () {
       return {
@@ -45,7 +53,8 @@ import Stock_insert from './stock/Stock_insert'
     },
     components : {
         Stock_manage,
-        Stock_insert
+        Stock_insert,
+        Stock_report
     }
   }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <LineChart v-if="loaded" 
+    <Donut v-if="loaded" 
         :chart-data="stock_day" 
         :chart-labels="stock_day_sum"/>
   </div>
@@ -11,10 +11,10 @@
 
 import {mapState} from 'vuex'
 import axios from 'axios'
-import LineChart from '@/components/LineChart'
+import Donut from '@/components/DonutChart'
   export default {
     components:{
-        LineChart
+        Donut
     },
     props:{},
     data(){
