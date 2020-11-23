@@ -177,6 +177,6 @@
             
    - DB 입력
             
-         ![image](https://user-images.githubusercontent.com/66682208/99973776-79d8a780-2de3-11eb-8d5c-73e4d9d36ad8.png)
+        ![image](https://user-images.githubusercontent.com/66682208/99973776-79d8a780-2de3-11eb-8d5c-73e4d9d36ad8.png)
 
             
