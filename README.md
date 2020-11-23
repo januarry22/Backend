@@ -123,6 +123,60 @@
       
       
       
+      
+      
+      
  # Spring Boot + Restful API
 
+ 
+  ### 1) Restful API
+
+        - Rest(Representational State Transfer) 란? 
+             HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고, HTTP Method(POST, GET, PUT, DELETE)를 통해 
+            해당 자원에 대한 CRUD Operation을 적용하는 것을 의미한다.
+           
+        - RESTful은 일반적으로 REST라는 아키텍처를 구현하는 웹 서비스를 나타내기 위해 사용되는 용어
+
+
+
+
+
+  ### 2) 프로젝트 적용
+ 
+    - CRUD 예시
+        
+    - 거래처 입력
+   
+   ![image](https://user-images.githubusercontent.com/66682208/99974109-d63bc700-2de3-11eb-8dc3-84bb6f3300ac.png)
+
     
+   - post 상태전송
+        
+          axios
+          .post('http://localhost:9000/api/seller/insert',{
+                seller_name: this.editedItem.seller_name,
+                seller_tel: this.editedItem.seller_tel,
+                seller_item: this.editedItem.seller_item,
+                seller_regdate: this.editedItem.seller_regdate
+          })
+          .then(Response=>{
+            this.fetchSeller()
+          })
+          
+          
+          
+          
+   - SellerController.java
+          
+        ![image](https://user-images.githubusercontent.com/66682208/99972771-49dcd480-2de2-11eb-8ccd-bd7667db0d25.png)
+          
+          
+   - Controller => Service => ServiceImpl => Mapper => DB 접근 
+   
+        ![image](https://user-images.githubusercontent.com/66682208/99973658-57468e80-2de3-11eb-8c54-3f3d00418c1f.png)
+            
+   - DB 입력
+            
+         ![image](https://user-images.githubusercontent.com/66682208/99973776-79d8a780-2de3-11eb-8d5c-73e4d9d36ad8.png)
+
+            
