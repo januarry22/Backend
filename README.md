@@ -23,4 +23,4 @@
     
    
    -  [SpringSecurity + JWT](https://github.com/januarry22/Backend/tree/Login "정리")
-   -  [Spring Boot + Restful API](https://github.com/januarry22/Backend/tree/Login "정리")
+   -  [Spring Boot + Restful API](https://github.com/januarry22/Backend/tree/Login#spring-boot--restful-api)
